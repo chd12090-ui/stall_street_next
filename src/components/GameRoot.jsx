@@ -24,10 +24,7 @@ export default function GameRoot() {
   const viewport = useRef(null);
   useEffect(() => {
     const booted = window[bootFlag];
-    // React Strict Mode runs effects twice on the same eleㅌㅈment in development.
     if (booted === viewport.current) return;
-    // The game starts once per page load; a fresh mount (e.g. after a client-side
-    // navigation back to this page) needs a full load.
     if (booted) {
       window.location.reload();
       return;
