@@ -103,7 +103,7 @@ export function RoomChoices({gate, state, nickname, setNickname, code, setCode})
       <button type="button" className="ui-control" data-room-create="" onClick={() => admit('create')} disabled={busy}>
         {pending === 'create' ? '방 만드는 중…' : '방 만들기'}
       </button>
-      <button type="button" className="ui-control" ref={joinChoice} data-room-join="" onClick={gate.join} disabled={busy}>코드로 참가</button>
+      <button type="button" className="ui-control" ref={joinChoice} data-room-join="" onClick={gate.join} disabled={busy}>참가하기</button>
     </div>}
     {!joining && room?.mode === 'multiplayer' &&
       <div className="room-resume-wrap"><button type="button" className="ui-control ui-compact" data-room-resume="" onClick={() => admit('resume')} disabled={busy}>

@@ -70,7 +70,7 @@ test('the landing exposes the three room choices and the screen-width picker', a
   assert.match(f.view(), /닉네임 <small>\(최대 6자\)<\/small><\/span><input [^>]*\bname="nickname"/);
   assert.match(f.view(), /<h2 id="room-heading">게임 시작<\/h2><label class="room-width-picker"><span>가로 크기<\/span><select[^>]*><option value="auto" selected="">자동<\/option>/);
   for (const size of [360,390,412]) assert.ok(f.view().includes('<option value="' + size + '">' + size + 'px</option>'));
-  for (const label of ['혼자 봇과 플레이하기', '방 만들기', '코드로 참가']) assert.ok(f.view().includes('>' + label + '<'), label);
+  for (const label of ['혼자 봇과 플레이하기', '방 만들기', '참가하기']) assert.ok(f.view().includes('>' + label + '<'), label);
 });
 
 test('the landing appears after the server rejects a previously saved room', async t => {
