@@ -1,7 +1,6 @@
 'use client';
 
 // Hosts the game. The server renders the static frame (loading screen included);
-// after hydration the landing screen and, once a room is chosen, the game engine
 // are loaded on the client and take over the DOM inside #game-viewport.
 import { useEffect, useRef } from 'react';
 import { gameFrameMarkup } from './game-frame-markup.mjs';
