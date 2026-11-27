@@ -7,8 +7,6 @@ import { useEffect, useRef } from 'react';
 import { gameFrameMarkup } from './game-frame-markup.mjs';
 
 const bootFlag = '__stallStreetBooted';
-
-// In development, Fast Refresh re-runs this module after edits to game code. The
 // running game cannot be swapped in place (it owns timers and the DOM), so reload.
 if (typeof window !== 'undefined' && window[bootFlag]) window.location.reload();
 
@@ -27,7 +25,7 @@ export default function GameRoot() {
   const viewport = useRef(null);
   useEffect(() => {
     const booted = window[bootFlag];
-    // React Strict Mode runs effects twice on the same element in development.
+    // React Strict Mode runs effects twice on the same eleㅌㅈment in development.
     if (booted === viewport.current) return;
     // The game starts once per page load; a fresh mount (e.g. after a client-side
     // navigation back to this page) needs a full load.
