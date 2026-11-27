@@ -1,0 +1,109 @@
+.terminal{min-width:0;color:var(--px-action-text);background:#192e25;border:2px solid #253b2d;box-shadow:2px 3px #a5b29b;font-variant-numeric:tabular-nums}
+.tf-tabs{display:flex;gap:3px;padding:1px 9px 7px;border-bottom:1px solid #3a5041}
+.tf-tabs button{padding:5px 9px;min-height:29px;color:#bccbbf;font-size:var(--body-size);font-weight:750}
+.tf-tabs .active{background:var(--color-primary-subtle);color:#253d2d;box-shadow:inset 0 -2px #97aa85}
+.plot-legend{font:600 var(--body-size)/1.45 var(--ui);font-variant-numeric:tabular-nums;display:flex;flex-wrap:wrap;gap:1px 10px;align-items:center;min-height:15px;margin:1px 10px 3px;color:#c8d6c9}
+.plot-legend span{display:inline-flex;align-items:center;gap:4px}
+.plot-legend i{width:11px;border-top:2px solid var(--swatch)}
+#terminal-plot{display:block;width:100%;height:307px;cursor:crosshair;touch-action:none;user-select:none;-webkit-user-select:none;outline-offset:-2px}
+#terminal-plot:focus-visible{outline:2px solid #d2ddac}
+.study-error,.trade-error{font-size:var(--body-size);color:#a4492d;font-weight:700;margin:3px 0}
+
+/* Price research shares the brokerage surface; only the plot and individual study panes divide it. */
+.terminal.pro-chart{width:100%;min-width:0;border:0;box-shadow:none;border-radius:0;margin:0;background:#141619;color:#e4e9f0;font-family:var(--ui);overflow:visible}
+.pro-chart .tf-tabs{background:transparent;display:flex;gap:3px;justify-content:space-between;margin:0;padding:3px 0 8px;border:0;overflow:auto;scrollbar-width:none}
+.pro-chart .tf-tabs button{border:0;flex:1 0 auto;min-height:34px;padding:3px 6px;border-radius:7px;font:650 var(--body-size)/1.25 var(--ui);color:#a6afbd;background:transparent}
+.pro-chart .tf-tabs button.active{background:#2c3440;color:#fff;box-shadow:none}
+.pro-chart .analysis-toolbar{display:flex;align-items:center;gap:5px}
+.pro-chart .chart-mode{display:inline-flex;justify-self:start;align-items:center;gap:7px;padding:4px 2px;min-height:32px;color:var(--bk-sub);font:650 var(--body-size)/1.3 var(--ui);cursor:pointer}
+.pro-chart .chart-mode input{flex:none;width:16px;height:16px;margin:0;accent-color:var(--control-active)}
+.chart-tools-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px;margin-bottom:5px}
+.bk-quote-stack:has(.candle-inspect:not([hidden])){position:sticky;top:0;z-index:2}
+.bk-quote-stack:has(.candle-inspect:not([hidden]))>.bk-quote-default{visibility:hidden}
+.bk-quote-stack .candle-inspect{position:absolute;inset:0;display:grid;align-content:center;gap:3px;padding:2px 7px;background:var(--bk-bg);border-block:1px solid var(--bk-line);color:var(--bk-text);font:550 var(--body-size)/1.3 var(--ui);font-variant-numeric:tabular-nums}
+.candle-inspect[hidden]{display:none!important}
+.candle-inspect .bar-heading{display:flex;align-items:baseline;justify-content:space-between;gap:6px;color:var(--bk-sub);font-size:var(--body-size);line-height:1.25}
+.candle-inspect .bar-heading b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.candle-inspect .ohlc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 14px}
+.candle-inspect .ohlc>div{display:flex;justify-content:space-between;align-items:baseline;gap:4px;min-width:0}
+.candle-inspect dt{color:var(--bk-sub);white-space:nowrap}
+.candle-inspect dd{font-weight:700;text-align:end;overflow-wrap:anywhere}
+.candle-inspect .up{color:var(--bk-pos)}.candle-inspect .down{color:var(--bk-neg)}.candle-inspect .even{color:var(--bk-text)}
+.pro-chart .up{color:#ff8794}.pro-chart .down{color:#76a4ff}.pro-chart .even{color:#d1d8e3}
+.pro-chart .plot-legend{gap:2px 9px;min-height:16px;margin:0;padding:0;font:550 var(--body-size)/1.35 var(--ui);color:var(--bk-sub)}
+.pro-chart .plot-legend span{min-width:0;max-width:100%;overflow-wrap:anywhere}
+.pro-chart .plot-legend i{flex:none}
+.pro-chart #terminal-plot{display:block;background:#141619;width:100%;border:0;outline-offset:-2px}
+.pro-chart #terminal-plot:focus-visible{outline-color:#83aeff}
+.pro-chart #draw-status{
+  padding:6px 8px;font-size:var(--body-size);color:var(--px-ink);
+  border-bottom:1px solid var(--px-rule);background:var(--px-soft)
+}
+.pro-chart #draw-status:empty{display:none}
+@container game-width (max-width:360px){.pro-chart .tf-tabs{gap:1px}.pro-chart .tf-tabs button{padding-inline:4px;font-size:var(--body-size)}.candle-inspect .ohlc{column-gap:8px}}
+
+.chart-option-grid,.study-apply{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.draw-settings-body{gap:8px}
+.draw-palette{grid-auto-rows:max-content}
+.chart-option{position:relative;display:grid;align-content:start;min-width:0}
+.chart-option-preview{display:block;width:100%;height:auto}
+.chart-option-copy{
+  display:grid;min-width:0;align-content:start;gap:2px;min-block-size:52px;padding:6px 8px 8px;
+  text-align:start;word-break:keep-all;overflow-wrap:anywhere
+}
+.chart-option-copy strong{font:var(--control-label-weight) var(--body-size)/1.35 var(--ui)}
+.chart-option-copy small{font:550 var(--type-note)/1.3 var(--ui);color:var(--control-muted)}
+.chart-option-check{
+  position:absolute;inset:7px 7px auto auto;display:grid;place-items:center;width:18px;height:18px;
+  border:1px solid var(--control-border);background:var(--control-paper);color:var(--control-on-active)
+}
+.chart-option-check .ico{--is:13px;visibility:hidden}
+:is(.chart-option[aria-pressed=true] .chart-option-check,.study-toggle input:checked~.chart-option-check){
+  border-color:var(--control-active);background:var(--control-active)
+}
+:is(.chart-option[aria-pressed=true] .chart-option-check,.study-toggle input:checked~.chart-option-check) .ico{visibility:visible}
+.study-toggle input:focus-visible~.chart-option-check{outline:2px solid var(--focus-ring);outline-offset:2px}
+#frame .draw-palette .chart-option{padding:0}
+.draw-settings-body .draw-reset{flex:none;--control-fill:var(--control-subtle)}
+#frame .draw-palette .ui-control[aria-pressed=true]{
+  --control-fill:var(--control-subtle);--control-edge:var(--control-active);--control-text:var(--control-ink)
+}
+.chart-popup{display:flex;flex-direction:column;overflow-y:hidden}
+.chart-popup:has(#study-form){padding-bottom:0}
+.chart-popup .sheet-head{flex:none}
+.draw-settings-body,#study-form{display:flex;flex-direction:column;min-height:0}
+.draw-palette,#study-form [data-study-pane]{align-content:start;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:none}
+:is(.draw-palette,#study-form [data-study-pane])::-webkit-scrollbar{display:none}
+#study-form [data-study-pane]{align-items:start}
+.chart-study-tabs,.study-apply{flex:none}
+.chart-study-tabs{margin-bottom:8px}
+.study-item{border:1px solid var(--control-border);background:var(--control-paper)}
+.study-item:has(.study-toggle input:checked){border-color:var(--control-active)}
+.study-toggle{cursor:pointer}
+.study-toggle:has(input:checked){background:var(--control-subtle)}
+.study-details{color:var(--control-muted);border-top:1px solid var(--px-rule)}
+.study-details summary{padding-inline-start:8px}
+.study-details[open]{background:var(--px-soft)}
+.study-details-body{
+  display:grid;gap:8px;padding:4px 8px 8px;font-size:var(--body-size);line-height:1.5;
+  word-break:keep-all;overflow-wrap:anywhere
+}
+.study-fields{display:grid;gap:6px}
+.study-fields label{display:flex;align-items:center;justify-content:space-between;gap:4px;font-weight:var(--control-label-weight)}
+.study-fields input{
+  width:min(64px,54%);min-height:var(--control-compact);border:1px solid var(--control-border);border-radius:0;
+  padding:3px 5px;background:var(--control-paper);color:var(--control-ink);font-variant-numeric:tabular-nums
+}
+.study-fields input:invalid{border-color:var(--px-up)}
+.study-apply{padding:8px 0 var(--page-bottom)}
+.study-apply .study-error{grid-column:1/-1;margin:0}
+.study-apply .study-error:empty{display:none}
+.study-apply button:first-of-type{--control-fill:var(--control-subtle)}
+
+/* Keep the interval shortcut beside its native picker. Both hit areas use the same compact height. */
+.broker .tf-period-picker{position:absolute;inset:0 0 0 auto;width:24px}
+.broker .tf-period-picker .ui-select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.broker .tf-period-picker::after{content:"";position:absolute;inset:0;pointer-events:none;background:var(--control-caret-image,var(--control-caret-dark)) center / 14px 14px no-repeat}
+.broker .tf-period-picker:focus-within{outline:2px solid var(--focus-ring);outline-offset:-2px}
+#frame .broker .pro-chart .tf-tabs button{min-height:var(--control-compact)}
+#frame .broker .pro-chart .tf-tabs button.active{background:var(--control-subtle);color:var(--control-ink);box-shadow:inset 0 -2px var(--control-active)}

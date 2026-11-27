@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="768" height="488" viewBox="-288 -122 768 488" shape-rendering="crispEdges">
+  <title>열린 화장실 칸과 사내 공고</title>
+  <desc>가운데 칸의 문이 오른쪽 경첩에서 안으로 열려 있다. 왼쪽 칸막이의 사각 휴지함 아래로 종이 한 장이 나와 있고 옆 칸에는 근무시간 중 주식 금지 공고가 붙어 있다.</desc>
+  <defs>
+    <pattern id="upper-tile" patternUnits="userSpaceOnUse" width="32" height="18" x="0" y="0">
+      <rect width="32" height="18" fill="#5b7566"/>
+      <path fill="#576f61" d="M0 0h32v1H0zM0 1h1v17H0z"/>
+    </pattern>
+    <pattern id="wall-tile" patternUnits="userSpaceOnUse" width="21" height="15" x="2" y="56">
+      <rect width="21" height="15" fill="#bac2ac"/>
+      <path fill="#9ea893" d="M0 0h21v1H0zM0 1h1v14H0z"/>
+    </pattern>
+    <!-- The floor, partition sides and their exposed top/bottom edges share (96,119). -->
+    <clipPath id="floor"><path d="M-288 180h768v186h-768z"/></clipPath>
+  </defs>
+
+  <!-- One continuous rear wall and floor remain visible above and underneath the dividers. -->
+  <path fill="url(#upper-tile)" d="M-288-122h768V56h-768z"/>
+  <path fill="url(#wall-tile)" d="M-288 55h768v125h-768z"/>
+  <path fill="#758577" d="M-288 176h768v4h-768z"/>
+  <path fill="#b3bda6" d="M-288 175h768v1h-768z"/>
+  <g clip-path="url(#floor)">
+    <path fill="#87938a" d="M-288 180h768v186h-768z"/>
+    <g fill="none" stroke="#78897d" stroke-width="1">
+      <path d="M-288 187H480M-288 198H480M-288 214H480M-288 236H480M-288 268H480M-288 315H480"/>
+      <path d="M-192 180l-878 186m910-186-781 186m813-186-683 186m715-186-585 186m617-186-488 186m520-186-390 186m422-186-293 186m325-186-195 186m227-186-98 186M96 180v186m32-186 98 186m-66-186 195 186m-163-186 293 186m-261-186 390 186m-358-186 488 186m-456-186 585 186m-553-186 683 186"/>
+    </g>
+  </g>
+
+  <!-- Side partitions stand clear of the floor. The flat faces meet the tiled wall directly. -->
+  <path fill="#a3ad94" d="M53 72l17 19v78l-17 32z"/>
+  <path fill="#687f72" d="M138 72l-17 19v78l17 32z"/>
+  <path fill="#77887b" d="M66 177h5l-14 34-5 2zM122 177h4l14 35h-6z"/>
+
+  <!-- Same folded-paper dispenser as the home stall (draw_public_stall.py).
+       Its receding edges project to the room vanishing point (96,119). -->
+  <g id="paper-dispenser">
+    <path fill="#687e70" d="M63.5 123.5 55 124.75 55 138.75 63.5 134.5Z"/>
+    <path fill="#ced2b9" d="M63.5 122.75 55 123.75 59.75 123.75 67.5 122.75Z"/>
+    <path fill="#718678" d="M55 123.75 59.75 123.75 59.75 137.25 55 137.25Z"/>
+    <path fill="#a8b2a0" d="M67.5 122.75 59.75 123.75 59.75 137.25 67.5 133.5Z"/>
+    <path fill="#5d7164" d="M66.75 130.25 60.5 132.75 60.5 134.5 66.75 131.75Z"/>
+    <path fill="#c6c7af" d="M67 131.75 60.75 134.5 60.75 141.5 67 137.5Z"/>
+    <path fill="#e6e2c5" d="M67 131.75 60.75 134.5 60.75 140.75 67 137Z"/>
+  </g>
+
+  <!-- Contact shadows run across the same tiled floor as the open cubicle. -->
+  <g fill="#78887c">
+    <path d="M-288 214H50l-5 3h-333zM135 214h345v3H130z"/>
+  </g>
+
+  <!-- Neighbouring closed doors in the same row establish the scale and construction of the open one. -->
+  <path fill="#92a38c" d="M-288 77H45v124h-333z"/>
+
+  <!-- Visible hardware on the neighbouring closed stall. -->
+  <path fill="#a9b6a0" d="M34 135h6v10h-6z"/>
+  <path fill="#5d7868" d="M35 136h4v3h-4z"/>
+  <path fill="#bd8d77" d="M35 136h3v2h-3z"/>
+  <path fill="#7b9380" d="M29 142h9v2h-9z"/>
+  <path fill="#c4cdb5" d="M29 141h9v2h-9z"/>
+
+  <path fill="#8a9e8a" d="M147 76h333v125H147z"/>
+  <!-- A second joint is visible on wide screens. -->
+  <path fill="#425f50" d="M226 77h3v124h-3z"/>
+  <path fill="#68836e" d="M230 73h8v129h-8z"/>
+  <path fill="#acbba3" d="M230 73h8v2h-8z"/>
+  <path fill="#768f7a" d="M233 202h3v10h-3z"/>
+  <path fill="#556e60" d="M231 212h7v2h-7z"/>
+
+  <!-- Narrow pilasters have exposed levelling feet and head brackets; there is no threshold. -->
+  <g fill="#5a7160">
+    <path d="M47 201h4v14h-4zm92 0h4v14h-4z"/>
+    <path d="M44 215h10v2H44zm92 0h10v2h-10z"/>
+  </g>
+  <path fill="#acb6a1" d="M48 201h2v13h-2zm92 0h2v13h-2z"/>
+  <path fill="#8b9c87" d="M45 214h8v2h-8zm92 0h8v2h-8z"/>
+  <path fill="#577360" d="M44 71h10v132H44zm91 0h11v132h-11z"/>
+  <path fill="#76927c" d="M45 72h6v128h-6zm91 0h7v128h-7z"/>
+  <path fill="#99af98" d="M44 71h10v2H44zm91 0h11v2h-11z"/>
+  <path fill="#798d79" d="M44 200h10v3H44zm91 0h11v3h-11z"/>
+  <!-- Slender overhead brace sits on saddles with daylight below it. -->
+  <path fill="#68816d" d="M-288 61h768v3h-768z"/>
+  <path fill="#b3bfaa" d="M-288 60h768v1h-768z"/>
+  <path fill="#7d9380" d="M47 64h4v7h-4zm92 0h4v7h-4zM232 64h4v9h-4z"/>
+
+  <!-- At its pivot the 86-unit leaf spans the opening to the opposite jamb. Its
+       two rails, vents and latch share the projection of the swinging face. -->
+  <g id="open-door" transform="translate(192 0) scale(-1 1)">
+    <path fill="#748d80" d="M51 80 79 87 79 185 51 200Z"/>
+    <!-- Recessed ventilation slots in the plane of the door. -->
+    <path fill="#627e6f" d="M62.5 98.5 72 100 72 101 62.5 100Z"/>
+    <path fill="#8b9f8e" d="M62.5 100 72 101 72 101.5 62.5 100.5Z"/>
+    <path fill="#627e6f" d="M62.5 102.5 72 103.5 72 104.5 62.5 103.5Z"/>
+    <path fill="#8b9f8e" d="M62.5 103.5 72 104.5 72 105 62.5 104Z"/>
+    <path fill="#627e6f" d="M62.5 106 72 107 72 108 62.5 107.5Z"/>
+    <path fill="#8b9f8e" d="M62.5 107.5 72 108 72 108.5 62.5 108Z"/>
+    <!-- Surface latch: plate, thumb turn, then the projecting return lever. -->
+    <path fill="#c3cbb4" d="M71.5 128.5 75.5 128 76.5 128 72.5 128.5Z"/>
+    <path fill="#829783" d="M75.5 128 75.5 141 76.5 141 76.5 128Z"/>
+    <path fill="#b6c0a9" d="M72.5 128.5 76.5 128 76.5 141 72.5 141.5Z"/>
+    <path fill="#637d6c" d="M73.5 131 74 130 75 130 75.5 131 75.5 132.5 75 134 74 134 73.5 132.5Z"/>
+    <path fill="#c8cdb5" d="M74.5 131 75.5 131 75.5 132.5 74.5 132.5Z"/>
+    <path fill="#c7cbb3" d="M74 135 75 135 78 136 77 136Z"/>
+    <path fill="#778e7a" d="M74.5 136 75 136 78.5 138.5 77.5 138.5Z"/>
+    <path fill="#d6d9bf" d="M71.5 136.5 77.5 135.5 78.5 135.5 72.5 136.5Z"/>
+    <path fill="#728d79" d="M77.5 135.5 77.5 138 78.5 138 78.5 135.5Z"/>
+    <path fill="#c4cdb9" d="M72.5 136.5 78.5 135.5 78.5 138 72.5 139Z"/>
+    <path fill="#8da28f" d="M77.5 131.5 79 131.5 79 134 77.5 134Z"/>
+    <!-- Both hinge leaves meet the pin on the inner edge of the front pilaster. -->
+    <path fill="#8b9e88" d="M50 95 55 95 55 99 50 99Z"/>
+    <path fill="#b6c1aa" d="M51.5 95 55 95.5 55 99 51.5 98.5Z"/>
+    <path fill="#728b77" d="M49.5 93 51.5 93 51.5 101 49.5 101Z"/>
+    <path fill="#bdc7b0" d="M50 93 51 93 51 100 50 100Z"/>
+    <path fill="#8b9e88" d="M50 182 55 182 55 186 50 186Z"/>
+    <path fill="#b6c1aa" d="M51.5 181.5 55 180.5 55 184 51.5 185.5Z"/>
+    <path fill="#728b77" d="M49.5 180 51.5 180 51.5 188 49.5 188Z"/>
+    <path fill="#bdc7b0" d="M50 180 51 180 51 187 50 187Z"/>
+  </g>
+
+  <!-- The notice is taped flat to the matte door of the next stall. -->
+  <g transform="translate(161 115) scale(.84)" font-family="'Apple SD Gothic Neo','Noto Sans CJK KR','Malgun Gothic',sans-serif" text-anchor="middle" shape-rendering="geometricPrecision">
+    <path fill="#6e856f" d="M1 1h33v47H1z"/>
+    <path fill="#ece9d4" d="M0 0h33v47H0z"/>
+    <path fill="#d5d7bc" d="M2-1h5v3H2zm24 0h5v3h-5z"/>
+    <text x="16.5" y="8" font-size="4.5" font-weight="700" fill="#4c5b4f">공 고</text>
+    <path fill="#83907b" d="M3 10h27v.6H3z"/>
+    <text x="16.5" y="19" font-size="6.1" font-weight="700" fill="#35483e">근무시간 중</text>
+    <text x="16.5" y="27" font-size="6.65" font-weight="700" fill="#35483e">주식 금지</text>
+    <path fill="#acb19b" d="M4 33h25v.5H4z"/>
+    <text x="14" y="42" font-size="3.9" fill="#566958">총무과</text>
+    <path fill="none" stroke="#a56d59" stroke-width=".7" d="M25 38h4v4h-4z"/>
+    <path fill="#a56d59" d="M26 39h.55v1h.9v-1h.6v2h-2z"/>
+  </g>
+  <!-- The neighbouring closed door's indicator and pull, mounted at its free edge. -->
+  <path fill="#9fb09a" d="M150 137h6v10h-6z"/>
+  <path fill="#576f60" d="M151 138h4v4h-4z"/>
+  <path fill="#bb9079" d="M151 139h3v2h-3z"/>
+  <path fill="#ced2b9" d="M152 144h7v2h-7z"/>
+</svg>

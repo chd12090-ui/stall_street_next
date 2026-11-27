@@ -1,0 +1,37 @@
+/* Native controls, footnotes and generated labels share the 14px body size.
+   Route styles define their own heading and price hierarchy. */
+#frame {font-size:var(--text-floor);line-height:1.45}
+:where(small,sup,sub,figcaption) {font-size:var(--text-floor)}
+:where(h1) {font-size:var(--type-title)}
+:where(h2) {font-size:var(--section-title)}
+:where(h3,h4) {font-size:var(--type-lead)}
+:where(input,textarea)::placeholder {font-size:inherit}
+:where(input,button,select,textarea,optgroup,option) {font-family:inherit;font-size:inherit}
+
+#frame .nr-paper p {overflow-wrap:anywhere}
+#frame :is(button,select,input,textarea,details,summary) {max-inline-size:100%}
+#frame :is(button,select,input:not([type=checkbox]):not([type=radio]),textarea) {min-width:0}
+#frame :is(select,input:not([type=checkbox]):not([type=radio]),textarea) {line-height:1.35}
+#frame button:focus-visible,#frame input:focus-visible,#frame select:focus-visible,#frame summary:focus-visible{outline-offset:-2px}
+#frame :is(.data-row,.fx-presets,
+ .analysis-toolbar,.bar-heading,
+ .nr-line-meta){flex-wrap:wrap}
+#frame :is(.page,.sheet,.nr-paper,.nr-kiosk,
+ .study-item,.nr-controls>*,.sheet-head>*,.nr-header>*,.bar-heading>*){min-inline-size:0}
+#frame .sheet {overflow-x:hidden}
+#frame .sheet .fx-presets{flex-wrap:wrap}
+#frame .fx-balances b {overflow-wrap:anywhere}
+#frame .sheet .fx-box label {flex-wrap:wrap}
+#frame .sheet .fx-box input {flex:1 1 min(170px,100%);width:auto}
+#frame .sheet .odds summary {width:fit-content}
+#frame .related-row>button {flex-wrap:wrap}
+#frame .related-row>button>span {max-width:100%}
+#frame .tf-tabs {
+  overscroll-behavior-x:contain;scrollbar-width:thin;
+}
+#frame .tf-tabs button {
+  flex:0 0 auto;line-height:1.35;
+}
+#frame .analysis-toolbar>span {margin-left:0}
+#frame .pro-chart .tf-tabs {justify-content:flex-start}
+#frame #toast {min-width:min(285px,92%);max-width:94%;width:max-content;white-space:normal}

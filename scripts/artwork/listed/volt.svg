@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 64 64">
+  <title>온빛전력</title>
+  <rect width="64" height="64" fill="#F8C548"/>
+  <g fill="#252C2B">
+    <circle cx="32" cy="32" r="22.5"/>
+    <path d="M40 7 20.5 34.5h12l-10 22.1L46 27.6H34.1L49.2 7Z" fill="#F8C548"/>
+  </g>
+</svg>

@@ -1,0 +1,28 @@
+.feed-switch{padding:var(--page-top) var(--page-gutter) var(--page-gap);background:var(--page)}
+.feed-switch nav{display:flex;border:1px solid var(--px-line);background:var(--px-sheet)}
+.feed-switch button{display:flex;align-items:center;justify-content:center;gap:7px;min-height:calc(var(--control-height) - 2px);padding:5px 13px;line-height:1.25;font-size:var(--body-size);font-weight:700}
+.feed-switch button+button{border-left:1px solid var(--px-rule)}
+.feed-switch [aria-current=page]{background:var(--px-soft);color:var(--px-ink);box-shadow:inset 0 -3px var(--feed-selected-rule,var(--px-pine))}
+.feed-switch .ico{--is:17px}
+.detail-back{
+  display:grid;place-items:center;flex:none;width:44px;height:44px;
+  margin-inline-start:-8px;padding:0;background:none
+}
+.detail-back .ico{--is:22px;transform:rotate(90deg)}
+.detail-back:active{background:var(--px-soft)}
+.detail-title{display:flex;align-items:center;gap:5px;min-width:0}
+@media(hover:hover){.detail-back:hover{background:var(--px-soft)}}
+.member-profile{font:normal var(--body-size)/1.55 var(--ui)}
+.member-ident{display:flex;align-items:center;gap:14px;margin:2px 0 18px}
+.member-ident>div{display:grid;gap:2px}
+.member-ident b{font:normal var(--type-title)/1.25 var(--pixel)}
+.member-ident span,.member-stats dt{color:var(--muted)}
+.member-avatar{width:72px;height:72px;display:grid;place-items:center;flex:none;border:2px solid var(--px-muted);background:var(--px-soft)}
+.member-avatar img{width:60px;height:60px}
+.member-stats{margin:0}
+.member-stats{padding:3px 12px;margin-bottom:18px;border:1px solid var(--px-line);background:var(--px-sheet)}
+.member-stats>div{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:8px 0}
+.member-stats>div+div{border-top:1px solid var(--px-rule)}
+.member-profile dd{margin:0 0 0 auto;text-align:right;font-weight:750;font-variant-numeric:tabular-nums}
+.member-profile h3{margin:16px 0 8px;font:normal var(--type-lead)/1.4 var(--pixel)}
+@container game-width (max-width:360px){.feed-switch button{padding-inline:10px}}

@@ -1,0 +1,9 @@
+.rehab-alley-art,.rehab-alley-wall,.rehab-paper-actors{
+  position:absolute;inset:0;width:100%;height:100%;pointer-events:none;image-rendering:pixelated
+}
+.rehab-paper-actors{
+  background-image:url("/art/pixel/rehab-ddakji.webp");background-repeat:no-repeat
+}
+.rehab-paper-poses{
+  inset:auto;background-image:url("/art/pixel/rehab-paper-poses.webp")
+}

@@ -1,0 +1,16 @@
+:root {
+  --color-primary:#283E33;
+  --color-primary-subtle:#EDF2E2;
+  --color-hover:var(--color-primary-subtle);
+  --color-on-primary:#FFF7E3;
+  --color-bg:#FCFBF5;
+  --color-surface:#FFFBED;
+  --color-text:#233D2E;
+  --color-text-muted:#52664E;
+  --color-border:#A5B598;
+  --color-divider:#C3CCB5;
+  --color-focus:#1E74AD;
+  --color-attention:#F2A7B8;
+  --color-rise:#A34733;
+  --color-fall:#36669A;
+}

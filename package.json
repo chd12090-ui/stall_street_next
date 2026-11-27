@@ -1,0 +1,27 @@
+{
+  "name": "stall-street",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "postinstall": "node scripts/copy-sqljs.mjs",
+    "predev": "node scripts/build-migrations.mjs && node scripts/copy-sqljs.mjs",
+    "dev": "next dev",
+    "prebuild": "node scripts/build-migrations.mjs && node scripts/copy-sqljs.mjs",
+    "build": "next build",
+    "start": "next start",
+    "pretest": "node scripts/build-migrations.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "next": "^16.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sql.js": "^1.12.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.12"
+  },
+  "engines": {
+    "node": ">=22.15"
+  }
+}

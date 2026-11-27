@@ -1,0 +1,97 @@
+#frame[data-section="ritual"]{
+  --ritual-wood:#413c39;--ritual-sky:#303c40;--ritual-shadow:#302d2c;--ritual-rule:#796958;
+  --ritual-ink:#fff3d9;--ritual-muted:#dfd0bb;--ritual-brass:#d7b783;--ritual-field:#594f45;
+  background:var(--ritual-sky)
+}
+#frame[data-section="ritual"] #screen{display:flex;flex-direction:column}
+#frame[data-section="ritual"] #tabbar{background:#343b35;border-top-color:#716353}
+.ritual-page{display:flex;flex:1 0 auto;flex-direction:column;color:var(--ritual-ink);background:var(--ritual-wood)}
+#frame .ritual-heading{flex:none;background:var(--ritual-sky);color:var(--ritual-ink)}
+.ritual-heading.feed-switch nav{background:#343d3b;border-color:#827e6c}
+.ritual-heading.feed-switch button{color:#e9e1ce}
+.ritual-heading.feed-switch button+button{border-color:#6b7467}
+.ritual-heading.feed-switch [aria-current=page]{color:#282b27;background:var(--ritual-brass);--feed-selected-rule:#937a55}
+.ritual-stage{
+  position:relative;isolation:isolate;flex:none;width:100%;margin:0;overflow:hidden;
+  aspect-ratio:108/86;background:var(--ritual-wood)
+}
+.ritual-backdrop,.ritual-room,.ritual-platform,.ritual-still,.ritual-stage canvas{display:block;pointer-events:none;image-rendering:pixelated}
+.ritual-backdrop,.ritual-room,.ritual-platform,.ritual-stage canvas{width:100%;height:100%}
+.ritual-foreground{position:absolute}
+.ritual-still{position:absolute;height:auto}
+.ritual-still img{display:block;width:100%;height:auto}
+.ritual-pet-target{
+  position:absolute;z-index:1;left:28.7%;top:37.2%;width:40.8%;height:47.7%;
+  padding:0;border:0;background:transparent;cursor:pointer;touch-action:pan-y;-webkit-tap-highlight-color:transparent
+}
+.ritual-pet-target:focus-visible{outline:2px dashed var(--ritual-brass);outline-offset:-3px}
+.ritual-stroke{position:absolute;inset:0;display:block;overflow:hidden;visibility:hidden}
+.ritual-still .ritual-stroke img{width:800%;height:100%;max-width:none}
+.ritual-seated.petting .ritual-idle{visibility:hidden}
+.ritual-seated.petting .ritual-stroke{visibility:visible}
+.ritual-seated.petting .ritual-stroke img{animation:pet-ritual-stroke var(--pet-duration) steps(8,jump-none) both}
+@keyframes pet-ritual-stroke{from{transform:translateX(0)}to{transform:translateX(-87.5%)}}
+@media(prefers-reduced-motion:reduce){
+  .ritual-still .ritual-stroke img{width:100%}
+  .ritual-seated.petting .ritual-stroke img{animation-name:pet-ritual-still}
+}
+@keyframes pet-ritual-still{from,to{transform:none}}
+.ritual-stage canvas{position:absolute;inset:0;visibility:hidden}
+.ritual-foreground[data-painted] canvas{visibility:visible}
+.ritual-foreground[data-painted] .ritual-still{visibility:hidden}
+.ritual-foremist{position:absolute;inset:0;pointer-events:none}
+.ritual-foremist img{display:block;width:100%;height:100%;image-rendering:pixelated}
+.ritual-offering{
+  display:flex;flex:1 0 auto;flex-direction:column;gap:13px;min-width:0;
+  padding:var(--page-gutter) var(--page-gutter) var(--page-bottom);
+  background:
+    linear-gradient(90deg,transparent calc(4% - 5px),#343331 calc(4% - 5px) calc(4% - 3px),transparent calc(4% - 3px) calc(96% + 3px),#343331 calc(96% + 3px) calc(96% + 5px),transparent calc(96% + 5px)),
+    url('/art/pixel/ritual-soil-long-bone.webp') 28% 63% / 50px 24px no-repeat,
+    url('/art/pixel/ritual-soil-ribs.webp') 91% 44% / 38px 20px no-repeat,
+    var(--ritual-wood);
+  image-rendering:pixelated
+}
+.ritual-order{display:grid;grid-template-columns:max-content minmax(0,1fr);align-items:center;gap:14px}
+.ritual-order label{font:normal var(--type-lead)/1.3 var(--pixel);color:var(--ritual-ink)}
+.ritual-target{
+  --control-fill:var(--ritual-field);--control-text:var(--ritual-ink);--control-edge:var(--ritual-rule);
+  --control-caret-image:var(--control-caret-light);--control-pad-start:43px;
+  position:relative;min-width:0
+}
+.ritual-target img{
+  position:absolute;inset-inline-start:8px;top:50%;transform:translateY(-50%);z-index:1;
+  object-fit:contain;border-radius:0;pointer-events:none
+}
+.ritual-target select{display:block;width:100%;min-width:0;color-scheme:dark}
+.ritual-target option,.ritual-target optgroup{color:var(--ritual-ink);background:var(--ritual-wood)}
+.ritual-target select:disabled{opacity:1;-webkit-text-fill-color:var(--ritual-muted);cursor:default}
+.ritual-terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px;margin:0}
+.ritual-terms>div{min-width:0;padding:7px 0 6px;border-top:1px solid var(--ritual-rule)}
+.ritual-terms dt{position:relative;display:flex;align-items:center;gap:3px;color:var(--ritual-muted);font-size:var(--body-size);line-height:1.45}
+.ritual-help{display:grid;align-items:center;justify-items:end;min-height:var(--control-compact);width:var(--control-compact);margin:-4px 0 -4px auto;padding:0;border:0;background:transparent;color:var(--ritual-muted);cursor:pointer}
+.ritual-help span{display:grid;place-items:center;width:15px;height:15px;border:1px solid currentColor;border-radius:50%;font:700 11px/1 var(--ui)}
+.ritual-help[aria-expanded=true] span{color:var(--ritual-shadow);background:var(--ritual-brass);border-color:var(--ritual-brass)}
+.ritual-hint{
+  position:absolute;z-index:2;top:calc(100% + 4px);right:0;width:min(198px,100%);
+  padding:8px 10px;border:1px solid var(--ritual-rule);box-shadow:2px 3px var(--ritual-shadow);
+  color:var(--ritual-ink);background:#342f2c;font:normal var(--type-note)/1.5 var(--ui);word-break:keep-all
+}
+.ritual-terms dd{margin:1px 0 0;color:var(--ritual-ink);font:normal var(--section-title)/1.35 var(--pixel);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.ritual-foot{display:grid;gap:8px;margin-top:auto}
+.ritual-outcome{color:var(--ritual-ink);font-size:var(--body-size);line-height:1.5;text-align:center;word-break:keep-all}
+.ritual-actions{display:flex;gap:8px}
+.ritual-primary,.ritual-secondary{
+  --control-active:var(--ritual-brass);--control-on-active:var(--ritual-shadow);
+  --control-fill:var(--ritual-field);--control-text:var(--ritual-ink);--control-edge:var(--ritual-rule);
+  width:100%;min-width:0
+}
+.ritual-page :focus-visible{outline-color:#ffd99e}
+@media(max-height:660px){
+  .ritual-offering{gap:9px}
+  .ritual-terms>div{padding-block:4px}
+  .ritual-foot{gap:6px}
+}
+@container game-width (max-width:360px){
+  .ritual-order{gap:9px}
+  .ritual-terms{column-gap:12px}
+}

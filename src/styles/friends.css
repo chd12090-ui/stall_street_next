@@ -1,0 +1,119 @@
+#frame[data-section="league"]{
+  --office-paper:var(--color-bg);--office-surface:#fff;--office-field:var(--color-primary-subtle);
+  --office-border:#aab5ad;--office-rule:#d1d8cf;--office-ink:var(--color-text);
+  --office-muted:#506058;--office-steel:#526861;
+  background:var(--office-paper)
+}
+#frame[data-section="league"] #screen{
+  background:var(--office-paper);
+  image-rendering:pixelated
+}
+.community-page.friends-club{
+  --px-ink:var(--office-ink);--px-muted:var(--office-muted);--px-quiet:var(--office-muted);
+  --px-pine:var(--office-steel);--px-paper:var(--office-paper);--px-sheet:var(--office-surface);
+  --px-soft:var(--office-field);--px-hover:var(--office-field);--px-line:var(--office-border);--px-rule:var(--office-rule);
+  --page:var(--office-paper);--focus-ring:#3b6268;--control-focus:var(--focus-ring);
+  --control-ink:var(--office-ink);--control-muted:var(--office-muted);
+  --control-paper:var(--office-surface);--control-subtle:var(--office-field);--control-border:var(--office-border);
+  --control-active:#485c55;--control-on-active:#f6f5e8;
+  background:var(--office-paper);color:var(--office-ink)
+}
+.friend-lobby .view-heading{margin-bottom:8px}
+.friend-lobby .friend-chat-actions{gap:6px}
+.friend-lobby .friend-chat-list li:last-child{border-bottom:0}
+.friends-club .community-avatar{display:block}
+.friends-club .friend-chat-form textarea::placeholder{color:var(--office-muted);opacity:1}
+
+#overlay[data-dialog="friend-rank"]{padding:0}
+#overlay .friend-ranking{
+  height:100%;max-height:none;padding:0;border:0;box-shadow:none;
+  color:#f4e8cc;background:#352e26;container-type:inline-size;
+  --control-paper:#332d24;--control-ink:#f4e8cc;--control-border:#857353;--control-subtle:#4c4132;
+  --focus-ring:#ffe1a0;--control-focus:var(--focus-ring);
+  --rank-painting:url('/art/pixel/rank-mural.webp');
+  --rank-width:144;--rank-height:216;--rank-ceiling:28;--rank-floor:13;
+  --rank-figures:calc(var(--rank-height) - var(--rank-ceiling) - var(--rank-floor))
+}
+/* Stretch the ceiling and floor from the same painting to fill the screen.
+   The cats and the room around them keep their original proportions. */
+.friend-gallery{
+  position:relative;isolation:isolate;display:flex;flex-direction:column;
+  height:100%;min-height:calc(var(--screen-safe-top) + 84px + var(--screen-bottom) + 100cqw * var(--rank-figures) / var(--rank-width));
+  overflow:hidden
+}
+.friend-gallery::before,.friend-gallery::after,.rank-mural{
+  width:100%;background-image:var(--rank-painting);background-repeat:no-repeat;image-rendering:pixelated
+}
+.friend-gallery::before,.friend-gallery::after{content:"";flex:1 0 0}
+.friend-gallery::before{
+  min-height:calc(var(--screen-safe-top) + 50px);
+  background-image:linear-gradient(#372b23c9,#372b237a 58px,transparent 112px),var(--rank-painting);
+  background-size:100% 100%,100% calc(100% * var(--rank-height) / var(--rank-ceiling));
+  background-position:center top
+}
+.friend-gallery::after{
+  min-height:calc(var(--screen-bottom) + 34px);
+  background-size:100% calc(100% * var(--rank-height) / var(--rank-floor));
+  background-position:center bottom
+}
+.friend-ranking-head{
+  position:absolute;inset:var(--screen-safe-top) var(--page-gutter) auto;z-index:5;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:8px;pointer-events:none
+}
+.friend-ranking-head h2{font:normal var(--page-title)/1.25 var(--pixel);color:#fff1d5;text-shadow:1px 2px #2d2620,-1px -1px #352f28}
+.friend-ranking-head p{width:fit-content;margin-top:3px;font:600 var(--type-note)/1.35 var(--ui);color:#f4e6c8;text-shadow:1px 1px 1px #1f1b17,-1px -1px 1px #251e18}
+.friend-ranking-head button,.friend-ranking-actions{pointer-events:auto}
+.rank-mural{
+  position:relative;flex:none;aspect-ratio:var(--rank-width) / var(--rank-figures);
+  background-size:100% calc(100% * var(--rank-height) / var(--rank-figures));
+  background-position:center calc(100% * var(--rank-ceiling) / (var(--rank-ceiling) + var(--rank-floor)))
+}
+.rank-portrait{
+  position:absolute;z-index:6;left:calc(100% * var(--head-x) / var(--rank-width));
+  top:calc(100% * (var(--head-y) - var(--rank-ceiling)) / var(--rank-figures));
+  width:16%;height:8.5%;transform:translateX(-50%);padding:0;color:#f7eed7
+}
+.rank-portrait:is([data-role="winner"],[data-role="washer"]){width:22%}
+.rank-caption{
+  position:absolute;bottom:calc(100% + 3px);left:50%;transform:translateX(-50%);width:max-content;
+  max-width:24cqw;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:1px 4px;
+  padding:2px 4px;background:#382b23ed;box-shadow:inset 0 -1px #8b7754;
+  font:650 clamp(11px,3.3cqw,13px)/1.2 var(--ui);color:#ffefd0
+}
+.rank-caption small{font-size:.91em;color:#e5cc94;white-space:nowrap}
+.rank-caption strong{min-width:0;font:inherit;overflow-wrap:anywhere}
+.rank-caption-unsettled{max-width:36cqw;flex-wrap:nowrap;white-space:nowrap}
+.rank-caption-unsettled strong{overflow:hidden;text-overflow:ellipsis}
+.rank-portrait[data-rank="1"] .rank-caption{
+  max-width:26cqw;padding-inline:7px;background:#dfc18b;color:#30281f;border:1px solid #795b35;
+  box-shadow:inset 0 1px #f9e6bb,inset 0 -1px #b89556
+}
+.rank-portrait[data-rank="1"] .rank-caption::before,
+.rank-portrait[data-rank="1"] .rank-caption::after{
+  content:"";position:absolute;inset-block:-1px;width:5px;pointer-events:none;
+  background:linear-gradient(#fff0c4,#fff0c4) left top/5px 2px no-repeat,
+    linear-gradient(#f0d591,#f0d591) left 2px/2px 2px no-repeat,
+    linear-gradient(#a67d40,#a67d40) left bottom 2px/2px 2px no-repeat,
+    linear-gradient(#edce8e,#edce8e) left bottom/4px 2px no-repeat
+}
+.rank-portrait[data-rank="1"] .rank-caption::before{left:-1px}
+.rank-portrait[data-rank="1"] .rank-caption::after{right:-1px;transform:scaleX(-1)}
+.rank-portrait[data-rank="1"] small{color:#594024}
+.rank-portrait:hover .rank-caption,.rank-portrait:focus-visible .rank-caption{outline:2px solid #ffe2a3}
+.friend-ranking-actions{
+  position:absolute;z-index:5;bottom:var(--screen-bottom,16px);inset-inline:var(--page-gutter);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:6px;pointer-events:none
+}
+.friend-ranking-actions button{pointer-events:auto}
+.rank-pager{display:flex;align-items:center;gap:5px;pointer-events:auto;background:#332d24;color:#ffefd0}
+.rank-pager span{padding-inline:2px;font:600 var(--type-note)/1 var(--ui);font-variant-numeric:tabular-nums}
+.rank-pager button{min-width:32px;font-size:18px}
+.friend-card,.friend-card :where(p,span,button,small,dt,dd,li,summary){font-size:var(--body-size)}
+.friend-card .member-avatar{width:60px;height:60px}
+.friend-card .member-avatar svg{display:block;width:52px;height:52px}
+.friend-card .member-ident{margin-bottom:12px}
+.friend-card .member-ident b{font:normal var(--type-title)/1.3 var(--pixel)}
+.friend-card .member-stats{margin-bottom:14px}
+.friend-card .member-stats>div{padding-block:6px}
+.friend-card .friend-stats small{font-weight:normal}
+.friend-card .friend-no-snapshot{padding:10px 12px;background:var(--px-soft)}

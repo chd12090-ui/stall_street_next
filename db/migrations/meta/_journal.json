@@ -1,0 +1,90 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1795154400000,
+      "tag": "0000_friend_elections",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1795172400000,
+      "tag": "0001_friend_chat",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1795176000000,
+      "tag": "0002_server_election",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1795179600000,
+      "tag": "0003_friend_intimidations",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1795195920000,
+      "tag": "0004_friend_spy_reports",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1795200600000,
+      "tag": "0005_election_resets",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1795242000000,
+      "tag": "0006_game_rooms",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1795251600000,
+      "tag": "0007_room_start",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1795478400000,
+      "tag": "0008_market_rituals",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1795525200000,
+      "tag": "0009_ritual_daily_limit",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1795525260000,
+      "tag": "0010_room_member_progress",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "6",
+      "when": 1795599562535,
+      "tag": "0011_friend_asset_share_totals",
+      "breakpoints": true
+    }
+  ]
+}

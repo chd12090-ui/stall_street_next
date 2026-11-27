@@ -1,0 +1,32 @@
+.loan-desk-dice-tray {
+  display:block;
+  inline-size:100%;
+  aspect-ratio:320/218;
+  overflow:hidden;
+  background:#783e4a;
+}
+.loan-desk-dice-tray canvas {
+  display:block;
+  inline-size:100%;
+  block-size:100%;
+}
+.loan-desk-reroll {
+  inline-size:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  --control-fill:var(--loan-surface);
+  --control-edge:var(--loan-line);
+  --control-text:var(--loan-edge);
+  word-break:keep-all;
+}
+.loan-desk-reroll .ico {
+  --is:16px;
+}
+.loan-desk-dice-summary {
+  color:var(--loan-accent);
+  font:normal var(--body-size)/1.45 var(--pixel);
+  text-align:center;
+  word-break:keep-all;
+}

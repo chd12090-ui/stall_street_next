@@ -1,0 +1,184 @@
+/* Shared surface and control palette for the game interface. */
+#frame {
+  --px-paper: var(--page);
+  --px-sheet: var(--cream);
+  --px-input: var(--px-paper);
+  --px-document: #fffcf0;
+  --px-soft: var(--color-primary-subtle);
+  --px-hover: var(--color-hover);
+  --px-line: var(--color-border);
+  --px-rule: var(--color-divider);
+  --px-shadow: #c3cfb5;
+  --px-ink: var(--ink);
+  --px-muted: var(--muted);
+  --px-quiet: #5d6c56;
+  --px-pine: var(--color-primary);
+  --px-night: #172b23;
+  --px-lit: var(--scene-accent);
+  --px-action-text: var(--scene-text);
+  --px-up: var(--color-rise);
+  --px-down: var(--color-fall);
+}
+#frame #screen {scrollbar-color:var(--px-line) transparent}
+.broker,.atlas-page,.nr-kiosk,.nr-article {color-scheme:light}
+.broker {
+  --bk-bg:var(--px-paper);--bk-layer:var(--px-paper);--bk-layer2:var(--control-subtle);
+  --bk-line:var(--px-rule);--bk-text:var(--px-ink);--bk-sub:var(--px-muted);
+  --bk-dim:var(--px-quiet);--bk-accent:var(--control-active);
+  --bk-pos:var(--px-up);--bk-neg:var(--px-down);
+}
+.broker .bk-heading h2,.broker .bk-panel-title h2,.broker .bk-finance-heading h2,
+.nr-related h2 {
+  font:normal var(--section-title)/1.25 var(--pixel);letter-spacing:-.02em;color:var(--px-ink);
+}
+.atlas-page :is(button,a,select):focus-visible,.nr-kiosk :is(button,select):focus-visible,.nr-article button:focus-visible {
+  outline:2px solid var(--focus-ring);outline-offset:2px;
+}
+.broker .bk-link,.broker .bk-back,
+.bk-account .bk-link{color:var(--px-muted)}
+.broker .bk-link {
+  font-weight:650;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--px-line);
+}
+.bk-wallet-pair>button:hover {background:var(--px-hover)}
+.bk-wallet-label {color:var(--px-muted)}
+.bk-wallet-pair b {color:var(--px-ink)}
+.bk-order-held .bk-link {color:var(--control-ink)}
+.bk-listcap b,.bk-last b {color:var(--px-ink)}
+.broker .bk-filter button,.broker .bk-segment,.broker .bk-segment button {border-radius:0}
+.broker .bk-filter button.active,.broker .bk-segment button.active {
+  color:var(--control-on-active);background:var(--control-active);border-color:var(--control-active);box-shadow:none;
+}
+.nr-controls nav button[aria-pressed=true],.atlas-kind-tabs button[aria-pressed=true]{
+  color:var(--px-action-text);background:var(--px-pine);border-color:var(--px-pine);box-shadow:inset 0 -2px #1b3225;
+}
+.bk-selects{gap:6px}
+.broker .bk-story {border-color:var(--px-rule)}
+.bk-instrument-name small,.bk-rank,.bk-last .bk-flat {color:var(--px-quiet)}
+.bk-instrument-name b {color:var(--px-ink)}
+.broker .bk-mark {
+  border:1px solid #d6decd;border-radius:0;box-shadow:none;background:#fff;
+  padding:0;font:normal var(--body-size)/1 var(--pixel);letter-spacing:0;text-align:center;
+}
+.broker .bk-mark>.ico{color:var(--px-pine)}
+.bk-badge-art{display:block;object-fit:contain;image-rendering:pixelated}
+.broker .bk-badge-art{width:100%;height:100%}
+.broker .bk-mark:has(>.bk-pixel-mark){border:0;background:transparent;box-shadow:none}
+.broker .bk-closed{
+  color:var(--px-ink);border:1px solid var(--px-line);border-radius:0;background:var(--px-soft);
+}
+.bk-pages,.bk-closed span,.bk-order-held{color:var(--px-muted)}
+.bk-detail-tabs {border-bottom:1px solid var(--px-rule)}
+.broker .bk-detail-tabs button {color:var(--px-muted)}
+.broker .bk-detail-tabs button.active {color:var(--control-active);border-bottom:3px solid var(--control-active)}
+.bk-note,.bk-explain p,.bk-stat dt,.bk-table thead,.bk-story small{color:var(--px-muted)}
+.broker .bk-segment {background:var(--px-soft);border:1px solid var(--px-rule)}
+.bk-table :is(th,td),.bk-metrics>div {border-color:var(--px-rule)}
+.bk-stat dd,.bk-table th,.bk-metrics dd,.bk-story b,
+.bk-flow-bars>div>span {color:var(--px-ink)}
+.broker :is(.bk-flow-bars,.bk-history-summary){background:var(--bk-layer2)}
+.bk-table td:not([class]) {color:var(--px-ink)}
+.bk-table tr.sel {background:var(--px-paper)}.bk-table tr.sel th button {color:var(--control-active)}
+.bk-metrics dt,.bk-metrics dd.na {color:var(--px-muted)}
+.bk-flow-bars i{background:linear-gradient(90deg,transparent calc(50% - .5px),#84957d calc(50% - .5px),#84957d calc(50% + .5px),transparent calc(50% + .5px))}
+.bk-flow-bars .positive {background:#bc6954}.bk-flow-bars .negative {background:#698bae}
+.bk-order-actions {background:var(--px-paper)}
+
+/* One continuous surface for the quote, tools, canvas and order controls. */
+.broker .terminal.pro-chart {background:var(--px-paper);color:var(--px-ink)}
+.pro-chart #terminal-plot {background:var(--px-paper)}
+#frame .broker .pro-chart .tf-tabs {
+  display:grid;grid-template-columns:minmax(66px,1.25fr) repeat(4,minmax(0,1fr));gap:4px;
+  overflow:visible;margin-top:8px;padding:0;border-bottom:1px solid var(--bk-line);
+}
+.broker .pro-chart .tf-intraday{position:relative;display:grid;min-width:0}
+.broker .pro-chart .tf-intraday button{width:100%;min-width:0;padding-inline:2px 24px!important}
+#frame .broker .pro-chart .analysis-toolbar{margin:0 0 0 auto;justify-content:flex-end;gap:4px}
+#frame .broker .pro-chart .analysis-toolbar .t-setting{
+  inline-size:calc(var(--control-compact) + 12px);min-block-size:26px;border:0;--control-fill:var(--control-subtle)
+}
+.broker .pro-chart .analysis-toolbar .ico{--is:14px}
+.broker .pro-chart .tf-tabs button{
+  border-radius:0;color:var(--control-ink);background:var(--control-paper);
+}
+.broker .pro-chart .tf-tabs button{background:transparent;color:var(--control-muted);padding-inline:1px;white-space:nowrap;min-width:0}
+.broker .pro-chart .tf-tabs button.active{background:var(--control-subtle);color:var(--control-ink);box-shadow:inset 0 -2px var(--control-active)}
+.pro-chart .analysis-toolbar>span,
+.pro-chart .plot-legend{color:var(--bk-sub)}
+.pro-chart .up,.pro-chart .plot-buy-mark{color:var(--bk-pos)}.pro-chart .down,.pro-chart .plot-sell-mark{color:var(--bk-neg)}.pro-chart .even{color:var(--bk-sub)}
+
+.atlas-page {
+  --at-bg:var(--px-paper);--at-surface:var(--px-soft);--at-text:var(--px-ink);
+  --at-muted:var(--px-muted);--at-line:var(--px-rule);--at-map:var(--px-night);--at-accent:var(--px-pine);
+  padding-top:var(--page-top);gap:var(--page-gap);
+}
+.atlas-kind-tabs button,.atlas-more,.atlas-open-country,
+.atlas-country-select select{
+  color:var(--px-ink);border:1px solid var(--px-line);background:var(--px-soft);border-radius:0;
+}
+.atlas-page .atlas-map {
+  background:var(--px-night);border:1px solid #243e2f;border-radius:0;
+  box-shadow:1px 2px #a9b69b;
+}
+.atlas-map-canvas {
+  background-color:var(--px-night);
+  background-image:linear-gradient(120deg,#1b3429,#263e30 68%,#1c362c);
+}
+.atlas-shape {fill:#657f60;stroke:#253f30}
+.atlas-shape.muted {fill:#51694f}
+.atlas-shape.current,.atlas-shape.current:hover {fill:#bed393}
+.atlas-shape.peer{fill:#e5bf80}
+.atlas-shape:hover{fill:#a2b78c}
+.atlas-dot{fill:#deebc8;stroke:#28422e}
+.atlas-dot.current{fill:#f2f8d6;stroke:#64834c}
+.atlas-geo-label rect {fill:#294837;stroke:#7f9a74}
+.atlas-geo-label text {fill:#f2f6dc}
+.atlas-geo-label.current rect{fill:#ccdea8;stroke:#8da67e}
+.atlas-geo-label.current text {fill:#253e2b}
+.atlas-fresh{border-radius:0;background:#a9d388}
+.atlas-legend {color:var(--px-quiet)}
+.atlas-legend>span:before {height:4px;border-radius:0;box-shadow:inset 0 0 0 1px #66745c}
+.atlas-profile,.atlas-subsection {border-color:var(--px-line)}
+.atlas-currency,.atlas-article :is(span,em){color:var(--px-quiet)}
+.atlas-election,.atlas-pair-detail {border:1px solid var(--px-rule);border-radius:0;background:var(--px-sheet)}
+.atlas-election {border-left:3px solid var(--px-line);background:var(--px-soft)}
+.atlas-election>b {border-radius:0;color:var(--px-ink);background:var(--scene-accent)}
+.atlas-election>b.soon {background:#e9d4a4;color:#644a21}
+.atlas-election time,.atlas-facts dt,.atlas-facts summary,.atlas-sources summary {color:var(--px-muted)}
+.atlas-exposure b,.atlas-currency b,.atlas-facts dd,.atlas-pair-detail p,.atlas-sources p {color:var(--px-ink)}
+.atlas-facts dl>div,.atlas-pair,.atlas-article,.atlas-instruments button,.atlas-current-story,.atlas-pair-coverage {border-color:var(--px-rule)}
+.atlas-pair.selected {background:var(--px-soft)}
+.atlas-pair-detail {border-left:3px solid var(--edge)}
+/* Keep the arc color visible on the dark map and label it with dark ink on paper. */
+.atlas-pair .atlas-edge-type,.atlas-pair-detail header>span {
+  color:var(--px-ink);color:color-mix(in srgb,var(--edge) 30%,#183527);
+}
+.atlas-pair .atlas-edge-type:before {
+  content:'';display:inline-block;width:5px;height:8px;margin-right:4px;
+  background:var(--edge);border:1px solid #73826c;
+}
+.atlas-current-story b,.atlas-currency button,.atlas-election-result,.atlas-sources a {color:var(--px-pine)}
+.atlas-pair-detail header>button {color:var(--px-muted)}.atlas-disclose{border-color:var(--px-muted)}
+
+.nr-kiosk,.nr-article {
+  --nr-ink:var(--px-ink);--nr-sub:var(--px-muted);--nr-rule:var(--px-rule);
+  --nr-mint:#366642;--nr-paper:var(--px-sheet);--nr-print:#23382a;
+  background:var(--px-paper);color:var(--px-ink);
+}
+.nr-chips :is(button,.nr-industry),.nr-controls nav button {
+  border-radius:0;background:var(--px-soft);border:1px solid var(--px-line);color:var(--px-ink);
+}
+.nr-controls nav button {border-color:transparent;background:transparent}
+.nr-line {color:var(--px-ink)}
+.nr-article .nr-paper {
+  border:1px solid var(--px-line);border-top:3px solid var(--desk-accent,#52714d);
+  border-radius:0;box-shadow:var(--panel-shadow-offset) var(--px-shadow);
+}
+.nr-article .nr-paper.nr-weekly {border-top-width:4px}
+.nr-related .nr-quotes {background:var(--px-sheet);border:1px solid var(--px-rule);border-radius:0}
+.nr-related .nr-chips button {color:var(--px-ink)}
+.nr-article .nr-related h2{color:var(--px-ink)}
+.nr-line:focus-visible mark {outline:1px solid currentColor}
+@media(hover:hover){
+  .bk-listrow:hover,.atlas-pair:hover,.atlas-article:hover,.nr-line:hover {background-color:var(--px-hover)}
+  .broker .bk-filter button:not(.active):hover,.atlas-open-country:hover {background:var(--px-hover)}
+}

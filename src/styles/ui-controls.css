@@ -1,0 +1,112 @@
+/* Boxed actions, native choices and disclosures share two minimum heights.
+   Labels can wrap and increase the height with large text or longer translations. */
+:root {
+  --control-regular:44px;
+  --control-compact:32px;
+}
+#frame {
+  --control-paper:var(--px-paper);
+  --control-subtle:var(--px-soft);
+  --control-ink:var(--px-ink);
+  --control-muted:var(--px-muted);
+  --control-border:var(--px-line);
+  --control-active:var(--px-pine);
+  --control-on-active:var(--scene-text);
+  --control-caret-dark:url("/art/glyphs/control-chevron.svg");
+  --control-caret-light:url("/art/glyphs/control-chevron.svg#light");
+}
+.ui-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-bottom:1px solid var(--px-rule)}
+.ui-tabs>button{
+  display:grid;place-items:center;min-block-size:var(--control-regular);padding:7px 4px;
+  padding-inline-end:calc(4px + .22em);text-align:center;font:750 var(--body-size)/1.48 var(--ui)
+}
+.ui-tabs>button[aria-pressed=true]{
+  color:var(--control-active);box-shadow:inset 0 -2px var(--control-active);background:var(--control-subtle)
+}
+#frame :is(.ui-control,.btn,.ui-select,.ui-disclosure) {
+  box-sizing:border-box;
+  min-block-size:var(--control-regular);
+  block-size:auto;
+  border-radius:0;
+}
+#frame :is(.ui-control,.btn,.ui-select,.ui-disclosure).ui-compact {
+  min-block-size:var(--control-compact);
+}
+#frame :is(.ui-control,.btn,.ui-select) {
+  border:1px solid var(--control-edge,var(--control-border));
+  background-color:var(--control-fill,var(--control-paper));
+  color:var(--control-text,var(--control-ink));
+  padding:5px 12px;
+  padding-inline-start:var(--control-pad-start,12px);
+  box-shadow:var(--control-shadow,none);
+  font:var(--control-label-weight) var(--body-size)/1.35 var(--ui);
+  letter-spacing:normal;
+  cursor:pointer;
+}
+#frame :is(.ui-control,.btn,.ui-select).ui-compact {
+  padding:3px 9px;
+  padding-inline-start:var(--control-pad-start,9px);
+}
+#frame :is(.ui-primary,.btn.primary),#frame .ui-control[aria-pressed=true] {
+  --control-fill:var(--control-active);
+  --control-text:var(--control-on-active);
+  --control-edge:var(--control-active);
+}
+#frame .btn.orange {
+  --control-fill:var(--orange);
+  --control-text:var(--control-ink);
+  --control-edge:var(--control-ink);
+}
+#frame .ui-control.ui-icon {
+  display:inline-grid;place-items:center;padding:0;
+  inline-size:var(--control-regular);flex-shrink:0;
+}
+#frame .ui-control.ui-icon.ui-compact {inline-size:var(--control-compact)}
+#frame select.ui-select,#frame select.ui-select.ui-compact {
+  appearance:none;-webkit-appearance:none;
+  padding-inline-end:30px;
+  text-align:start;text-overflow:ellipsis;
+  background-image:var(--control-caret-image,var(--control-caret-dark));
+  background-position:right 9px center;background-repeat:no-repeat;background-size:14px 14px;
+}
+#frame select.ui-select.ui-compact {
+  padding-inline-end:25px;background-position:right 6px center;
+}
+#frame .ui-disclosure {
+  position:relative;
+  display:flex;align-items:center;gap:8px;
+  list-style:none;cursor:pointer;text-align:start;
+  font:var(--control-label-weight) var(--body-size)/1.35 var(--ui);
+  padding-inline-end:32px;
+}
+#frame .ui-disclosure.ui-control {justify-content:flex-start;padding-inline-end:32px}
+#frame .ui-disclosure::-webkit-details-marker {display:none}
+#frame .ui-disclosure::marker {content:""}
+#frame .ui-disclosure::after,#frame button.ui-select::after {
+  content:"";box-sizing:border-box;position:absolute;inset:auto 9px auto auto;top:50%;
+  width:14px;height:14px;min-width:0;border:0;margin:0;padding:0;border-radius:0;
+  background:currentColor;opacity:.9;transform:translateY(-50%);
+  -webkit-mask:var(--control-caret-dark) center / contain no-repeat;
+  mask:var(--control-caret-dark) center / contain no-repeat;
+  pointer-events:none;
+}
+#frame button.ui-select {position:relative;padding-inline-end:30px;text-align:start}
+#frame details[open]>.ui-disclosure::after,
+#frame .ui-disclosure[aria-expanded=true]::after,
+#frame button.ui-select[aria-expanded=true]::after {transform:translateY(-50%) rotate(180deg)}
+#frame :is(.ui-control,.btn,.ui-select,.ui-disclosure):focus-visible {
+  outline:2px solid var(--control-focus,var(--focus-ring));outline-offset:-2px
+}
+#frame :is(.ui-control,.btn,.ui-select):disabled {opacity:.55;cursor:default}
+@media (hover:hover) {
+  #frame :is(.ui-control,.btn,.ui-select):enabled:hover {filter:brightness(.965)}
+}
+/* iOS presents a zoomed native field below its normal input text size. */
+@supports (-webkit-touch-callout:none) {
+  #frame select.ui-select,#frame select.ui-select.ui-compact {font-size:var(--type-lead)}
+}
+@media (forced-colors:active) {
+  #frame select.ui-select {appearance:auto;background-image:none}
+  #frame .ui-disclosure::after,#frame button.ui-select::after {background:ButtonText;forced-color-adjust:none}
+}
+

@@ -1,0 +1,17 @@
+.sr-only{position:absolute;width:1px;height:1px;padding:0;clip:rect(0,0,0,0);overflow:hidden;white-space:nowrap}
+.fx-presets{display:flex;align-items:center;justify-content:space-between;gap:8px}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 12px) 50%,calc(100% - 8px) 50%;background-size:4px 4px,4px 4px;background-repeat:no-repeat}
+.fx-presets button,.fx-directions button{background:var(--px-soft);border:1px solid var(--px-line);min-height:32px;font-weight:700;font-size:var(--body-size);padding:5px 8px}
+#exchange-form{--fx-gap:9px;display:flex;flex-direction:column;gap:var(--fx-gap)}
+.fx-balances,.fx-directions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--fx-gap)}
+.fx-balances{background:var(--px-soft);border:1px solid var(--px-rule);column-gap:calc(var(--fx-gap) + 2px)}
+.fx-balances>div{padding:6px 8px;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;text-align:start;min-width:0;gap:4px}
+.fx-balances span{font-size:var(--body-size);color:var(--px-muted)}.fx-balances b{font:700 var(--body-size) var(--ui);font-variant-numeric:tabular-nums}
+.fx-directions button{min-height:44px}
+.fx-direction-label{font-size:var(--body-size);font-weight:700;margin:0}
+.fx-box{padding:10px 11px;border:1px solid var(--px-line);background:var(--px-paper);display:flex;flex-direction:column;gap:7px}
+.fx-box label,.fx-receive{display:flex;align-items:center;justify-content:space-between;gap:5px;font-size:var(--body-size);font-weight:700}
+.fx-box input{min-width:0;width:64%;font:700 var(--type-lead)/1.4 var(--ui);padding:5px 8px;border:1px solid var(--px-line);background:var(--px-input);border-radius:0;text-align:right;color:var(--px-ink)}
+.fx-presets{justify-content:flex-end;gap:4px}.fx-presets small{margin-right:auto;font-size:var(--body-size);color:var(--px-muted)}.fx-presets button{min-height:36px;padding:2px 7px}
+.fx-receive{padding-top:9px;border-top:1px solid var(--px-line)}.fx-receive b{font:700 var(--section-title) var(--ui);color:var(--px-pine)}
+.fx-info{font-size:var(--body-size);line-height:1.55;font-weight:700;color:var(--px-ink)}
