@@ -1,0 +1,6 @@
+/* <body> is a one-cell grid that centers the game (style.css). Next.js can append
+   helper elements to <body> (route announcer, dev tools); pin everything to the
+   same cell so an extra element never adds a grid row and shifts the game. */
+body > * {
+  grid-area: 1 / 1;
+}

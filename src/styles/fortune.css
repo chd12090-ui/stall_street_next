@@ -1,0 +1,335 @@
+#overlay[data-dialog="fortune"]{background:#102019b8}
+.fortune-sheet{
+  padding:0;background:none;border:0;box-shadow:none;outline:none;scrollbar-width:none;
+  overscroll-behavior:contain;animation:sheet-slide-up .32s cubic-bezier(.22,.7,.25,1)
+}
+.fortune-sheet::-webkit-scrollbar{display:none}
+.fortune-chassis{
+  --slot-black:#14261f;--slot-display:#eed8a6;--slot-label:#d8deb9;
+  --slot-panel:#263b2e;--slot-trim:#8b8255;--slot-shadow:#0e2019;--slot-rule:#52634a;
+  --match-paper:#f2dcaa;--match-edge:#c39555;--match-light:#f4c36b;
+  position:relative;container-type:inline-size;isolation:isolate;
+  color:var(--slot-label)
+}
+.fortune-cabinet{
+  --reel-size:clamp(32px,13.45cqi,50px);
+  position:relative;display:grid;isolation:isolate;
+  grid-template-columns:minmax(0,1fr) clamp(40px,13.6cqi,49px);
+  grid-template-rows:max(46px,15.5cqi) auto;
+  padding:0 4.9cqi 7cqi 6cqi
+}
+.fortune-case-art{
+  position:absolute;z-index:-1;inset:0;display:block;width:100%;height:100%;
+  object-fit:fill;image-rendering:pixelated;pointer-events:none
+}
+.fortune-hood{grid-area:1/1/2/-1;position:relative}
+.fortune-close{
+  position:absolute;z-index:4;inset-inline-end:1px;top:clamp(3px,calc(5cqi - 11px),8px);
+  --control-fill:var(--slot-panel);--control-text:var(--slot-label);--control-edge:var(--slot-trim)
+}
+.fortune-close .ico{--is:13px}
+.fortune-lights{
+  position:absolute;inset:auto 2% clamp(4px,calc(4cqi - 8.8px),7px) 1%;
+  display:flex;justify-content:space-between;align-items:center;pointer-events:none
+}
+.fortune-lights i{
+  width:7px;height:7px;border:1px solid #b4a06d;background:#887749;
+  box-shadow:1px 1px #3a3d2a,inset 1px 1px #c5b584
+}
+
+.fortune-machine{grid-area:2/1;min-width:0;display:grid;align-items:stretch;padding:1px 0}
+@media (prefers-reduced-motion:no-preference){
+  .fortune-machine{background:url('/art/pixel/slot-jackpot.webp') no-repeat 0 0 / 0 0}
+}
+.fortune-reels{
+  position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  padding:5px;gap:3px;background:#16281f;border:2px solid #9c8956;
+  box-shadow:inset 1px 1px #293d2f,inset -2px -2px var(--slot-shadow),2px 2px #142820
+}
+.fortune-reels::after{
+  content:'';position:absolute;inset:1px 1px auto;height:4px;pointer-events:none;
+  background:linear-gradient(90deg,#ead7a3b3 0 14%,transparent 14% 87%,#ead7a36e 87%)
+}
+.fortune-reel{
+  position:relative;min-width:0;height:calc(var(--reel-size) * 3 + 2px);overflow:hidden;
+  color:#3d6551;background:#f1e5c1;border:1px solid #27382b;
+  box-shadow:inset 2px 0 #fff1cba6,inset -2px 0 #ac987255
+}
+.fortune-reel::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(#6658344f 0%,#725d2a16 14%,transparent 28% 69%,#5b4f363e 100%)
+}
+.fortune-symbol{
+  display:grid;place-items:center;width:100%;height:var(--reel-size);
+  border-bottom:1px solid #8f7c574d
+}
+.fortune-cells{position:relative}
+.reel-edge{position:absolute;left:0}
+.edge-before{bottom:100%}
+.edge-after{top:100%}
+.fortune-symbol .ico{--is:clamp(24px,8.2cqi,31px)}
+.fortune-track{display:none}
+.fortune-symbol .i-ticket{color:#936038}
+.fortune-symbol .i-cup{color:#854c3a}
+.fortune-symbol .i-lunch{color:#556541}
+.is-spinning .fortune-reel:not([data-stopped]) .fortune-track{display:block;animation:slot-scroll .184s var(--lever-latch) linear infinite}
+.is-spinning .fortune-reel:not([data-stopped]) .fortune-cells{display:none}
+.is-spinning .fortune-reel:nth-child(2) .fortune-track{animation-duration:.198s}
+.is-spinning .fortune-reel:nth-child(3) .fortune-track{animation-duration:.213s}
+.is-spinning .fortune-reel[data-stopped] .fortune-cells{animation:slot-stop .46s linear both}
+.is-spinning .fortune-reel[data-stopped]::after{animation:slot-lock .24s ease-out}
+.is-revealed .fortune-symbol.winning{
+  background:var(--match-paper);box-shadow:inset 0 2px var(--match-edge),inset 0 -2px var(--match-edge)
+}
+.is-revealed:not(.win-0) .fortune-cells .fortune-symbol:not(.winning){opacity:.57}
+.fortune-paylines{position:absolute;z-index:2;inset:6px 3px;pointer-events:none}
+.fortune-payline{
+  position:absolute;inset:calc(var(--slot-row) * var(--reel-size)) 0 auto;height:var(--reel-size)
+}
+.fortune-payline::before,.fortune-payline::after{
+  content:'';position:absolute;top:50%;left:0;width:6px;height:11px;transform:translateY(-50%);
+  background:var(--match-light);clip-path:polygon(0 0,2px 0,2px 2px,4px 2px,4px 4px,100% 4px,100% 7px,4px 7px,4px 9px,2px 9px,2px 100%,0 100%)
+}
+.fortune-payline::after{left:auto;right:0;transform:translateY(-50%) scaleX(-1)}
+.is-spinning .fortune-lights i{animation:lamps .42s steps(2,jump-none) infinite alternate}
+.is-spinning .fortune-lights i:nth-child(2n){animation-delay:.16s}
+.is-revealed:not(.win-0) .fortune-lights i{background:#f0c67a;box-shadow:0 0 5px #e8b659,inset 1px 1px #f8e9af}
+
+.fortune-lever{
+  grid-area:2/2;position:relative;isolation:isolate;align-self:stretch;margin:2px 0 2px 3px;
+  padding:0;touch-action:none;user-select:none;cursor:grab
+}
+.fortune-lever:active{cursor:grabbing}
+.fortune-lever:disabled{cursor:default}
+.fortune-lever-base,.fortune-lever-groove,.fortune-handle{position:absolute;display:block}
+.fortune-lever-base{
+  inset:0 1px 0 1px;border:2px solid #192a22;
+  background:linear-gradient(90deg,#b6a071 0 6%,#797456 6% 20%,#54523d 20% 77%,#3f4333 77% 94%,#626247 94%);
+  box-shadow:inset 0 2px #b6a071,inset 0 -2px #29392d,1px 2px #15231c
+}
+.fortune-lever-base::before,.fortune-lever-base::after{
+  content:'';position:absolute;left:calc(50% - 2px);top:6px;width:5px;height:5px;
+  background:#b9a479;box-shadow:inset -1px -1px #514a34,0 1px #313329
+}
+.fortune-lever-base::after{top:auto;bottom:5px}
+.fortune-lever-groove{
+  inset:23px auto 24px 50%;width:11px;transform:translateX(-50%);
+  border:1px solid #877b55;background:#192720;box-shadow:inset -2px 0 #384638,1px 1px #29362c
+}
+.fortune-lever-groove::after{
+  content:'';position:absolute;inset:3px auto 3px 1px;width:3px;
+  background:#baa77b;box-shadow:1px 0 #756e50
+}
+.fortune-handle{
+  z-index:1;left:50%;top:var(--lever-position,0%);width:clamp(29px,9.3cqi,36px);height:29px;
+  transform:translate(-50%,-50%);transition:top .18s ease-out;
+  background:#8c4c38;border:3px solid #412f25;box-shadow:inset 2px 2px #df9a69,inset -2px -2px #684130;
+  clip-path:polygon(12% 0,88% 0,88% 9%,100% 9%,100% 88%,88% 88%,88% 100%,12% 100%,12% 88%,0 88%,0 9%,12% 9%)
+}
+.fortune-handle::before{
+  content:'';position:absolute;inset:3px 3px auto;height:2px;background:#c57f56;
+  box-shadow:0 2px #ab684b
+}
+.fortune-lever:hover:not(:disabled) .fortune-handle{background-color:#aa6146}
+.fortune-lever.is-dragging .fortune-handle{transition:none}
+.is-spinning .fortune-handle{animation:slot-pull .42s ease-out both}
+.is-fully-pulled .fortune-handle{animation:slot-return .22s .06s ease-out both}
+.is-spinning .fortune-reels{animation:slot-kick .22s var(--lever-latch) ease-out}
+
+.fortune-console{
+  position:relative;display:grid;gap:9px;margin:0;
+  padding:12px clamp(14px,6cqi,22px) 0;border-inline:2px solid var(--slot-black);
+  background:
+    linear-gradient(90deg,#2e4335 0 1.7%,#617053 1.7% 2.3%,#253a2f 2.3% 4.5%,transparent 4.5% 95.5%,#263d30 95.5% 97.7%,#697355 97.7% 98.3%,#26392f 98.3%),
+    linear-gradient(180deg,#2a3e31 0 4px,var(--slot-rule) 4px 5px,#384e3d 5px 100%)
+}
+.fortune-console::before,.fortune-console::after{
+  content:'';position:absolute;top:9px;left:2.8%;width:4px;height:4px;
+  background:#a69566;box-shadow:inset -1px -1px #565941,0 1px #21372a
+}
+.fortune-console::after{left:auto;right:2.8%}
+.fortune-result{
+  position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;
+  gap:3px;block-size:82px;padding:7px 9px;text-align:center;color:var(--slot-display);
+  border:1px solid var(--slot-trim);background:repeating-linear-gradient(0deg,#192c24 0 2px,#192f26 2px 4px);
+  box-shadow:inset 0 2px #12231c,inset 0 -1px #45614c,0 2px #24392e
+}
+.fortune-result strong{font:400 var(--type-title)/1.15 var(--pixel)}
+.fortune-result p{font-size:var(--body-size);line-height:1.4;color:var(--slot-label);word-break:keep-all}
+.fortune-action{
+  --control-active:#caa06c;--control-on-active:#30271d;
+  display:flex;align-items:center;justify-content:center;gap:8px;margin:0 2px 3px
+}
+.fortune-action .ico{--is:17px}
+.fortune-odds{
+  --control-ink:var(--slot-label);--control-muted:var(--slot-label);
+  --control-paper:var(--slot-panel);--control-subtle:var(--slot-panel);--control-border:var(--slot-rule);
+  border-top:1px solid var(--slot-rule);color:var(--slot-label);line-height:1.5
+}
+.fortune-odds-content{padding:3px 7px 5px;background:var(--slot-panel);border:1px solid #596a4f}
+.fortune-odds-content p{padding:3px 0 6px;color:#c2ceb3;word-break:keep-all}
+.fortune-odds-content .data-row{gap:6px;padding:5px 0;border-top:1px solid var(--slot-rule)}
+.fortune-odds-content b{color:var(--slot-display)}
+
+.fortune-plinth{
+  position:relative;height:var(--screen-bottom);
+  border:2px solid var(--slot-black);border-top:2px solid var(--slot-rule);
+  background:
+    linear-gradient(90deg,#22372b 0 3%,#607458 3% 4%,transparent 4% 96%,#5c6d51 96% 97%,#22372b 97%),
+    linear-gradient(#3f5240 0 4px,#293e32 4px 28px,#172b23 28px);
+  box-shadow:inset 0 -2px var(--slot-shadow)
+}
+.fortune-plinth::before,.fortune-plinth::after{
+  content:'';position:absolute;top:3px;left:9%;width:20%;height:6px;
+  background:repeating-linear-gradient(#172b23 0 2px,#54654c 2px 3px,transparent 3px 4px);
+  border-inline:2px solid #23392e
+}
+.fortune-plinth::after{left:auto;right:9%}
+.fortune-plinth img{
+  position:absolute;left:50%;top:1px;width:40px;height:10px;transform:translateX(-50%);
+  display:block;image-rendering:pixelated
+}
+#frame .fortune-sheet :is(button,summary):focus-visible{outline:2px solid #ecd09a;outline-offset:-3px}
+#frame .fortune-sheet .fortune-action:focus-visible{outline-color:#433021}
+#frame .fortune-sheet .fortune-lever:focus-visible{outline-offset:1px}
+
+@keyframes slot-scroll{from{transform:translateY(calc(var(--reel-size) * -4))}to{transform:translateY(0)}}
+@keyframes slot-stop{
+  0%{transform:translateY(calc(var(--reel-size) * -.9));animation-timing-function:cubic-bezier(.12,.60,.35,1)}
+  39%{transform:translateY(7px);animation-timing-function:ease-in-out}
+  68%{transform:translateY(-2.5px);animation-timing-function:ease-in-out}
+  84%{transform:translateY(1px);animation-timing-function:ease-out}
+  100%{transform:translateY(0)}
+}
+@keyframes slot-lock{from{box-shadow:inset 0 0 0 2px #e4b65c}to{box-shadow:inset 0 0 0 0 transparent}}
+@keyframes slot-pull{0%{top:var(--lever-from)}36%,54%{top:100%}100%{top:0%}}
+@keyframes slot-return{from{top:100%}to{top:0%}}
+@keyframes slot-kick{24%{transform:translateY(2px)}67%{transform:translateY(-1px)}}
+@keyframes lamps{to{background:#ffe19a;box-shadow:0 0 5px #ecb842}}
+
+.win-2{--match-paper:#f8dfa4;--match-edge:#c18b47;--match-light:#f7cf78}
+.win-3{--match-paper:#f9e1a8;--match-edge:#c17b50;--match-light:#ffce7a}
+.win-2 .fortune-reels{border-color:#d9b979;box-shadow:inset 1px 1px #514331,0 0 10px #c8a6684a}
+.win-3 .fortune-reels{border-color:#dea15f;box-shadow:inset 1px 1px #5f452f,0 0 15px #d16a4b50}
+.win-3 .fortune-result{color:#ffd991;border-color:#bd8a52}
+
+.fortune-reel{--slot-column:0}
+.fortune-reel:nth-child(2){--slot-column:1}
+.fortune-reel:nth-child(3){--slot-column:2}
+.is-fresh-result .fortune-symbol.winning{
+  --payline-delay:calc(var(--slot-row) * 225ms + var(--slot-column) * 74ms);
+  position:relative;isolation:isolate;overflow:hidden;
+  animation:slot-match-in .48s var(--payline-delay) ease-out both
+}
+.is-fresh-result .fortune-symbol.winning::before{
+  content:'';position:absolute;inset:2px auto 2px 0;width:32%;z-index:-1;
+  transform:translateX(-110%);background:linear-gradient(110deg,transparent,#fff2c666,transparent);
+  animation:slot-match-reflection .5s var(--payline-delay) ease-out both
+}
+.is-fresh-result .fortune-payline{animation:slot-marker-in .44s calc(var(--slot-row) * 225ms) ease-out both}
+.is-fresh-result .fortune-lights i{animation:slot-lamp-chase .65s calc(var(--lamp-distance) * 62ms) ease-out both}
+.is-fresh-result .fortune-result{animation:slot-display-light .8s .1s ease-out}
+.is-fresh-result.win-3 .fortune-reels{animation:slot-hot-rim 1.85s ease-out}
+
+.fortune-bingo-shine{
+  --shine-delay:calc(var(--slot-row) * 225ms + 140ms);
+  position:absolute;inset:2px 7px;overflow:hidden;pointer-events:none;
+  box-shadow:inset 0 2px #fff0b2,inset 0 -2px #f6cb79;
+  opacity:0;animation:slot-bingo-light .78s var(--shine-delay) ease-out both
+}
+.fortune-bingo-shine::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(104deg,transparent 18%,#ffecae30 38%,#fff4c990 47% 51%,#fffbe0c2 53%,#f6d48858 58%,transparent 71%);
+  animation:slot-bingo-sweep .59s var(--shine-delay) ease-in-out both
+}
+.fortune-bingo-shine::after{
+  content:'';position:absolute;top:7px;right:6%;width:15px;height:15px;
+  background:#fff7cf;
+  clip-path:polygon(40% 0,60% 0,60% 27%,73% 27%,73% 40%,100% 40%,100% 60%,73% 60%,73% 73%,60% 73%,60% 100%,40% 100%,40% 73%,27% 73%,27% 60%,0 60%,0 40%,27% 40%,27% 27%,40% 27%);
+  opacity:0;animation:slot-bingo-star .33s calc(var(--shine-delay) + .34s) steps(5,end) both
+}
+@keyframes slot-bingo-light{0%,100%{opacity:0}26%,66%{opacity:1}}
+@keyframes slot-bingo-sweep{from{transform:translateX(-73%)}to{transform:translateX(73%)}}
+@keyframes slot-bingo-star{
+  0%{opacity:0;transform:scale(.27)}
+  40%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(.53) translate(3px,-3px)}
+}
+
+.fortune-celebration{position:absolute;inset:1px 0;pointer-events:none;z-index:3}
+.win-3 .fortune-celebration::before{
+  content:'';position:absolute;inset:auto 3px -9px;height:6px;opacity:0;
+  background:linear-gradient(90deg,transparent,#eea34e 7%,#c5753e8c 23%,transparent 42% 58%,#c5753e8c 77%,#eea34e 93%,transparent);
+  clip-path:polygon(0 50%,8% 50%,8% 0,92% 0,92% 50%,100% 50%,100% 100%,0 100%);
+  animation:slot-heat-reflection 2.2s .16s ease-out both
+}
+.fortune-glint{
+  position:absolute;top:1px;left:2%;width:17%;height:3px;opacity:0;
+  background:linear-gradient(90deg,transparent,#ffdf9e 42%,#fff3cf 54%,transparent);
+  animation:slot-glint-pass .65s .12s ease-out both
+}
+.fortune-ember{
+  position:absolute;left:var(--spark-x);top:var(--spark-y);width:3px;height:5px;
+  background:linear-gradient(#fff0ae 0 2px,#f3b766 2px 4px,#a95133 4px);
+  box-shadow:1px 1px #87472c55;
+  opacity:0;animation:slot-ember-rise var(--spark-time) var(--spark-delay) ease-out both
+}
+.fortune-ember:nth-child(3n){
+  width:5px;height:5px;
+  clip-path:polygon(2px 0,3px 0,3px 2px,100% 2px,100% 3px,3px 3px,3px 100%,2px 100%,2px 3px,0 3px,0 2px,2px 2px)
+}
+.fortune-ember:nth-child(4n){width:2px;height:3px}
+.fortune-fire{
+  position:absolute;inset:-13% -3% -6%;opacity:0;
+  background:url('/art/pixel/slot-jackpot.webp') 0 0 / 3200% 100% no-repeat;
+  image-rendering:pixelated;animation:slot-jackpot 2.88s .32s steps(31,jump-end) both
+}
+
+@keyframes slot-match-in{
+  0%{background:transparent;box-shadow:inset 0 0 transparent}
+  40%{background:#ffe9b2;box-shadow:inset 0 2px #e9ac61,inset 0 -2px #e9ac61}
+  100%{background:var(--match-paper);box-shadow:inset 0 2px var(--match-edge),inset 0 -2px var(--match-edge)}
+}
+@keyframes slot-match-reflection{to{transform:translateX(325%)}}
+@keyframes slot-marker-in{
+  0%{opacity:0;transform:scaleX(.95)}
+  45%{opacity:1;transform:scaleX(1)}
+  70%{opacity:.77}
+  100%{opacity:1}
+}
+@keyframes slot-lamp-chase{
+  0%{background:#887749;box-shadow:1px 1px #3a3d2a}
+  42%{background:#ffdc94;box-shadow:0 0 7px #ebad62}
+  100%{background:#f0c67a;box-shadow:0 0 5px #e8b659,inset 1px 1px #f8e9af}
+}
+@keyframes slot-display-light{
+  35%{box-shadow:inset 0 0 11px #c79b4d38,0 0 7px #c79b4d30}
+}
+@keyframes slot-hot-rim{
+  25%{box-shadow:inset 0 0 7px #e89b5775,0 0 15px #e17e4f6d}
+  74%{box-shadow:inset 0 0 4px #be7f4577,0 0 8px #d16a4b59}
+}
+@keyframes slot-glint-pass{
+  0%{opacity:0;transform:translateX(0)}
+  30%{opacity:.9}
+  100%{opacity:0;transform:translateX(475%)}
+}
+@keyframes slot-ember-rise{
+  0%{opacity:0;transform:translate(0,2px) scale(.7)}
+  16%{opacity:1}
+  61%{opacity:.8;transform:translate(calc(var(--spark-dx) * .5),calc(var(--spark-rise) * -.64))}
+  100%{opacity:0;transform:translate(var(--spark-dx),calc(var(--spark-rise) * -1)) scale(.55)}
+}
+@keyframes slot-jackpot{
+  from{opacity:1;background-position:0% 0}
+  to{opacity:1;background-position:100% 0}
+}
+@keyframes slot-heat-reflection{
+  0%,100%{opacity:0}
+  21%,64%{opacity:.74}
+}
+@media (prefers-reduced-motion:reduce){
+  .fortune-sheet{animation:none}
+  .fortune-chassis *,.fortune-chassis *::after,.fortune-chassis *::before{animation:none!important;transition:none!important}
+  .fortune-celebration,.fortune-bingo-shine{display:none}
+}

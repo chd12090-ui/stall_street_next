@@ -1,0 +1,101 @@
+#overlay[data-dialog="trade"]{padding:0;background:var(--color-bg)}
+#overlay .trade-screen{
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr) auto;
+  height:100%;max-height:none;overflow:hidden;padding:0;border:0;box-shadow:none;
+  background:var(--color-bg);color:var(--color-text);animation:none
+}
+.trade-heading{
+  display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:8px;
+  padding:var(--status-bar-space) var(--page-gutter) 10px;
+  background:var(--color-primary);color:var(--color-on-primary)
+}
+.trade-security{display:grid;min-width:0;gap:3px;text-align:center}
+.trade-security h2{
+  margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font:normal var(--type-lead)/1.4 var(--pixel);letter-spacing:-.02em
+}
+.trade-security>span{display:flex;align-items:baseline;justify-content:center;gap:6px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.trade-security small{font-size:var(--body-size);font-weight:650}
+.trade-rise{color:#FFD4B8}
+.trade-fall{color:#C4E4FF}
+.trade-even{color:var(--scene-muted)}
+.trade-back,.trade-logo{display:grid;place-items:center;min-height:44px}
+.trade-back{justify-items:start;padding:0 0 0 3px}
+.trade-back .ico,.trade-keypad [data-value="backspace"] .ico{transform:rotate(90deg)}
+.trade-logo img{display:block;width:32px;height:32px}
+.trade-logo .ico{--is:24px}
+.trade-body{
+  display:flex;flex-direction:column;gap:9px;min-height:0;overflow:auto;
+  padding:10px var(--page-gutter) 12px;scrollbar-width:thin;overscroll-behavior:contain
+}
+.trade-account{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:38px}
+.trade-account-name{display:flex;align-items:center;gap:5px;font-weight:750;white-space:nowrap}
+.trade-account-name .ico{--is:14px;color:var(--color-text-muted)}
+.trade-fx{
+  min-height:32px;padding:3px 5px;color:var(--color-text-muted);
+  font-weight:650;text-decoration:underline;text-underline-offset:3px
+}
+.trade-switch,.trade-modes{display:flex;align-items:center;gap:0}
+.trade-switch{border:1px solid var(--color-border)}
+.trade-switch button,.trade-modes button{min-height:32px;padding:3px 8px;color:var(--color-text-muted);font-weight:650;white-space:nowrap}
+.trade-switch button[aria-pressed=true]{background:var(--color-primary);color:var(--color-on-primary)}
+.trade-switch button:disabled{opacity:.45}
+.trade-card{
+  display:grid;gap:4px;padding:9px 12px 10px;
+  border:1px solid var(--color-border);background:var(--color-primary-subtle)
+}
+.trade-card-heading{display:flex;align-items:center;justify-content:space-between;gap:4px;flex-wrap:wrap}
+.trade-card-heading h3{margin:0;font-size:var(--body-size);font-weight:750}
+.trade-modes button{position:relative;padding-inline:6px}
+.trade-modes button+button{border-inline-start:1px solid var(--color-divider)}
+.trade-modes button[aria-pressed=true]{color:var(--color-text);text-decoration:underline;text-underline-offset:4px}
+.trade-number{
+  display:flex;align-items:baseline;gap:6px;min-width:0;
+  font:770 clamp(24px,calc(6 * var(--game-vw)),30px)/1.3 var(--ui);font-variant-numeric:tabular-nums
+}
+.trade-number input{
+  width:min(10em,100%);min-width:0;flex:1 1 0;padding:1px 0;
+  border:0;border-radius:0;background:transparent;color:inherit;font:inherit;letter-spacing:-.035em
+}
+.trade-number input:focus-visible{outline:0;box-shadow:0 2px var(--color-focus)}
+.trade-number span,.trade-number small{flex:none;font:650 var(--body-size)/1.3 var(--ui);color:var(--color-text-muted)}
+.trade-capacity{display:flex;flex-wrap:wrap;justify-content:space-between;gap:3px 9px;margin:0;color:var(--color-text-muted);font-size:var(--type-note)}
+.trade-capacity b{color:var(--color-text)}
+.trade-entry{display:grid;gap:6px;margin-top:auto;padding-top:5px}
+.trade-shortcuts,.trade-keypad{display:grid;gap:4px}
+.trade-shortcuts{grid-template-columns:repeat(4,minmax(0,1fr))}
+#frame .trade-shortcuts button.ui-control{padding-inline:3px}
+.trade-keypad{grid-template-columns:repeat(3,minmax(0,1fr))}
+.trade-keypad button{
+  display:grid;place-items:center;min-height:44px;
+  font:650 22px/1 var(--ui);font-variant-numeric:tabular-nums
+}
+.trade-keypad button:active{background:var(--color-hover)}
+@media (hover:hover){
+  .trade-keypad button:hover,.trade-modes button:hover,#frame .trade-shortcuts button:enabled:hover{background:var(--color-hover);filter:none}
+}
+.trade-pending{
+  display:flex;align-items:center;justify-content:space-between;gap:5px;flex-wrap:wrap;
+  border-top:1px dashed var(--color-divider);color:var(--color-text-muted)
+}
+.trade-footer{
+  display:grid;gap:7px;padding:8px var(--page-gutter) var(--screen-bottom);
+  background:var(--color-bg);border-top:1px solid var(--color-divider)
+}
+.trade-estimate{display:grid;gap:4px;margin:0;font-variant-numeric:tabular-nums}
+.trade-estimate>div{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:var(--type-note)}
+.trade-estimate dt{color:var(--color-text-muted)}
+.trade-estimate dd{margin:0;font-weight:750;text-align:end;overflow-wrap:anywhere}
+.trade-estimate>div:last-child{font-size:var(--body-size)}
+.trade-message{margin:0;color:var(--color-rise);font-size:var(--type-note);font-weight:650}
+#frame .trade-submit.ui-control{
+  --control-fill:var(--color-rise);--control-edge:var(--color-rise);--control-text:var(--color-on-primary);
+  width:100%;min-height:48px;font-size:var(--section-title);font-weight:750
+}
+#frame .trade-screen[data-side="sell"] .trade-submit{--control-fill:var(--color-fall);--control-edge:var(--color-fall)}
+@media (max-height:540px){
+  .trade-heading{padding-block-start:var(--screen-safe-top)}
+  .trade-footer{gap:4px;padding-block-start:5px}
+  #frame .trade-submit.ui-control{min-height:44px}
+}

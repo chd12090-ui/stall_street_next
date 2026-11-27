@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 64 64">
+  <title>Northstar Chips</title>
+  <rect width="64" height="64" fill="#E8E7FA"/>
+  <g fill="#43399A">
+    <path d="M10 50V21l9.2-9 22.1 23V14H54v29.4l-8.1 8.1L22.7 27.4V50Z"/>
+  </g>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="72" height="144" viewBox="84 74 72 144" shape-rendering="crispEdges">
+  <path fill="#4d6356" opacity=".27" d="M92 189 140 199 139 204 117 200 90 194 89 192Z"/>
+  <g transform="translate(141 0) scale(1.06522 1) translate(-141 0)">
+  <path fill="#6f8574" d="M95 83 141 77 141 201 95 190Z"/>
+  <path fill="#899d89" d="M97 84 141 77 141 199 97 188Z"/>
+  <path fill="#a5b39c" d="M95 83 141 77 141 79 95 85Z"/>
+  <path fill="#819682" d="M139 79 141 79 141 199 139 198Z"/>
+  <path fill="#758d7a" d="M108 103 128 102 128 104 108 105Z M108 107 128 106 128 108 108 109Z M108 111 128 110 128 112 108 113Z"/>
+  <path fill="#a6b5a0" d="M108 105 128 104 128 105 108 106Z M108 109 128 108 128 109 108 110Z M108 113 128 112 128 113 108 114Z"/>
+  <path fill="#a9baa2" d="M101 132h6v12h-6z M138 93h4v8h-4z M138 180h4v8h-4z"/>
+  <path fill="#647f6e" d="M102 133h4v4h-4z M99 141h9v3h-9z M141 93h2v8h-2z M141 180h2v8h-2z"/>
+  <path fill="#b78a74" d="M102 133h3v2h-3z"/>
+  <path fill="#c4cdb5" d="M99 140h9v2h-9z"/>
+  </g>
+</svg>

@@ -1,0 +1,105 @@
+#overlay[data-dialog="shop"]{padding:0}
+#overlay .shop-sheet{
+  --shop-ground:#0f161a;--shop-list:#1c2325;
+  --shop-edge:#52605e;--shop-rule:#353f40;--shop-action:#303b3c;
+  --shop-ink:#ecece2;--shop-muted:#bbc0b8;--shop-accent:#d7c49c;
+  --control-focus:var(--shop-accent);
+  height:100%;max-height:none;padding:0;border:0;box-shadow:none;overflow:hidden;
+  color:var(--shop-ink);background:var(--shop-ground);color-scheme:dark
+}
+.shop-main,.shop-scroll{height:100%}
+.shop-scroll{overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--shop-edge) var(--shop-ground)}
+#overlay[data-dialog="shop"] .shop-scroll{scrollbar-width:none}
+#overlay[data-dialog="shop"] .shop-scroll::-webkit-scrollbar{display:none}
+.shop-scene{position:relative;margin:0;aspect-ratio:108 / 88;overflow:hidden}
+/* Crop the art, hand, and hit target together on the original 108 × 126 grid. */
+.shop-alley{
+  position:absolute;inset-inline:0;top:66%;transform:translateY(-66%);aspect-ratio:108 / 126
+}
+.shop-backdrop{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.shop-pet-face,.shop-pet-hand,.shop-pet-target{position:absolute}
+.shop-pet-face{
+  left:calc(100% * 68 / 108);top:calc(100% * 66 / 126);width:calc(100% * 8 / 108);height:auto;
+  opacity:0;pointer-events:none
+}
+.shop-alley.petting .shop-pet-face{animation:pet-vendor-blink var(--pet-duration) step-end both}
+@keyframes pet-vendor-blink{0%,85%,100%{opacity:0}25%{opacity:1}}
+.shop-pet-hand{
+  left:calc(100% * 63 / 108);top:calc(100% * 59 / 126);width:calc(100% * 14 / 108);
+  height:auto;display:block;overflow:visible;pointer-events:none;filter:brightness(.76) saturate(.7)
+}
+.shop-pet-target{
+  left:calc(100% * 74.5 / 108);top:calc(100% * 72.5 / 126);transform:translate(-50%,-50%);
+  width:max(44px,calc(100% * 19 / 108));height:max(44px,calc(100% * 19 / 126));
+  padding:0;background:transparent;touch-action:pan-y pinch-zoom
+}
+.shop-pet-target:focus-visible{outline:2px dashed var(--shop-accent);outline-offset:-2px}
+.shop-scene::after{
+  content:"";position:absolute;inset:auto 0 0;height:12px;pointer-events:none;
+  background:linear-gradient(transparent,var(--shop-ground))
+}
+.shop-scene h2{
+  position:absolute;top:var(--screen-safe-top);inset-inline-start:var(--page-gutter);
+  display:flex;align-items:center;min-height:var(--control-regular);margin:0;
+  color:var(--shop-accent);font:normal var(--page-title)/1.25 var(--pixel);
+  text-shadow:2px 2px #0c1216
+}
+.shop-close{
+  position:absolute;top:var(--screen-safe-top);inset-inline-end:var(--page-gutter);z-index:1;
+  --control-fill:var(--shop-list);--control-text:var(--shop-ink);--control-edge:var(--shop-edge)
+}
+.shop-products{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;
+  margin:0 var(--page-gutter) var(--screen-bottom);padding:0;list-style:none
+}
+.shop-product{
+  display:grid;grid-template-rows:minmax(42px,1fr) auto auto;gap:6px;
+  width:100%;aspect-ratio:1;min-width:0;padding:8px;text-align:start;
+  color:var(--shop-ink);background:var(--shop-list);border:1px solid var(--shop-edge)
+}
+.shop-product:is(:hover,:focus-visible){border-color:var(--shop-accent)}
+.shop-product-art{
+  display:grid;place-items:center;min-height:0;background:#232d2e;
+  border-block-end:1px solid var(--shop-rule)
+}
+.shop-product-art img{
+  width:auto;height:min(100%,56px);max-width:100%;aspect-ratio:1
+}
+.shop-product-name{font-size:var(--body-size);font-weight:700;line-height:1.35;word-break:keep-all}
+.shop-product-price,.shop-detail-actions b{color:var(--shop-accent);font-size:var(--body-size);font-variant-numeric:tabular-nums}
+.shop-buy{
+  --control-fill:var(--shop-action);--control-text:var(--shop-ink);--control-edge:var(--shop-edge);
+  display:flex;justify-content:space-between;align-items:center;gap:4px;white-space:nowrap
+}
+.shop-buy .ico{--is:12px}
+.shop-detail-layer{
+  position:absolute;inset:0;z-index:2;display:grid;place-items:center;
+  padding:var(--dialog-edge) var(--page-gutter);background:#071011c9
+}
+.shop-detail{
+  width:min(100%,360px);max-height:100%;overflow:auto;overscroll-behavior:contain;
+  padding:14px;border:1px solid var(--shop-edge);border-block-start:2px solid var(--shop-accent);
+  background:var(--shop-list);box-shadow:3px 4px #0b1114
+}
+.shop-detail-head,.shop-detail-actions{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.shop-detail-head h3{font:normal var(--type-title)/1.25 var(--pixel)}
+.shop-detail .shop-product-art{margin-block:12px;height:76px}
+.shop-detail p{font-size:var(--body-size);line-height:1.6;word-break:keep-all}
+.shop-detail .shop-detail-note{margin-block-start:8px;color:var(--shop-muted)}
+.shop-detail .shop-detail-error{margin-block-start:8px;color:#ffc3aa}
+.shop-detail-actions{margin-block-start:14px;padding-block-start:12px;border-top:1px solid var(--shop-rule);flex-wrap:wrap}
+.bk-ai-glasses{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.ai-forecast-body{display:grid;gap:12px;color:var(--px-ink);font-size:var(--body-size)}
+.ai-forecast-body h3{font-size:var(--type-title);line-height:1.35}
+.ai-forecast-data{padding:8px 10px;background:var(--px-soft);border:1px solid var(--px-rule)}
+.ai-forecast-data>div{display:flex;justify-content:space-between;gap:8px;padding:3px 0}
+.ai-forecast-body dl{font-variant-numeric:tabular-nums}
+.ai-forecast-data dd,.ai-forecast-odds dd{font-weight:750}
+.ai-forecast-odds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));text-align:center;gap:8px}
+.ai-forecast-odds>div{padding:8px;border:1px solid var(--px-rule)}
+.ai-forecast-odds>div:first-child{color:var(--color-rise)}
+.ai-forecast-odds>div:last-child{color:var(--color-fall)}
+.ai-forecast-odds dd{font-size:var(--type-title)}
+.ai-forecast-note{color:var(--px-muted);line-height:1.55;word-break:keep-all}
+.shop-status{position:absolute;width:1px;height:1px;margin:0;overflow:hidden;clip-path:inset(50%)}
+@media (prefers-reduced-motion:reduce){.shop-sheet{animation:none}}

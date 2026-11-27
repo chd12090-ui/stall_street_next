@@ -1,0 +1,137 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {initial,creditStatus,drawCredit,loadable,takeDeskLoan,repayDeskLoan} from '../src/game/market.mjs';
+import {creditAction,creditInput,bankLoanContract} from '../src/game/credit-view.mjs';
+import {loanDeskInput,loanDeskNext,loanDeskPreset,loanDeskStage,deskLoanContract,deskLoanDraftAmount,setLoanDeskToss} from '../src/game/loan-desk-view.mjs';
+import {deskLoanMaximum,rollDeskRate} from '../src/game/loan-desk.mjs';
+import {loanContractBody,loanRepaymentBody} from '../src/game/loan-flow.mjs';
+
+import {loadJsx,renderView} from '../test-support/render-jsx.mjs';
+const {FinanceBody}=await loadJsx(new URL('../src/ui/finance.jsx',import.meta.url));
+const finance=(state,kind,modal={})=>renderView(FinanceBody,{kind,state,modal});
+const paper=(state,body)=>finance(state,'loan-paper',{body});
+
+const field=(id,value)=>({id,value,setAttribute(){},setSelectionRange(){},closest:()=>null});
+
+test('bank lending gates rate draws and disbursement behind amount and review steps',t=>{
+  const state={...initial(),resetId:'bank-flow'};
+  const motion=Object.getOwnPropertyDescriptor(globalThis,'matchMedia');
+  Object.defineProperty(globalThis,'matchMedia',{configurable:true,value:()=>({matches:true})});
+  t.after(()=>motion?Object.defineProperty(globalThis,'matchMedia',motion):delete globalThis.matchMedia);
+  let receipt;
+  const ctx={render(){},save(){},feedback(){},repaid(row,remaining){receipt=paper(state,loanRepaymentBody(state,row,remaining));}};
+  const action=(name,value)=>creditAction(name,{dataset:{value}},state,ctx);
+  const panel=()=>finance(state,'bank-loan');
+  const first=panel(),cap=creditStatus(state).max;
+  assert.match(first,/data-loan-stage="amount"/);
+  assert.match(first,/빌릴 금액<\/label>.*?class="loan-limit".*?심사 기준과 한도/);
+  assert.ok(first.includes('최대 '+cap.toLocaleString('ko-KR')+'원'));
+  assert.match(first,/class="loan-limit-popover"[^>]+hidden=""/);
+  assert.doesNotMatch(first,/loan-request-total|<summary|loan-machine|credit-accept|최소 신청|1만원 단위/);
+  const input=field('credit-amount','');
+  for(const [label,value] of [['25%',Math.floor(cap/4)],['50%',Math.floor(cap/2)],['최대',cap]]){
+    assert.ok(first.includes('data-act="credit-preset" data-value="'+value+'">'+label+'</button>'));
+    creditAction('credit-preset',{dataset:{value:String(value)},closest:()=>({querySelector:()=>input})},state,ctx);
+    assert.equal(input.value,value.toLocaleString('ko-KR'));
+  }
+  creditInput(field('credit-amount','1'),state);
+  action('credit-draw');
+  assert.equal(creditStatus(state).application,null);
+  action('credit-next');
+  assert.match(panel(),/data-loan-stage="rate".*loan-machine/);
+  assert.equal(creditStatus(state).application,null);
+  action('credit-draw');
+  const quote=creditStatus(state).application;
+  assert.equal(quote.amount,1);
+  assert.equal(quote.offers.length,3);
+  assert.match(panel(),/class="loan-flow-actions"><button[^>]+data-act="credit-decline">거절<\/button><button[^>]+data-act="credit-review"[^>]*>다음<\/button>/);
+  action('credit-decline');
+  assert.match(panel(),/거절하면 오늘 이 제안으로 대출을 받을 수 없어.*data-act="credit-decline-cancel">취소<\/button><button[^>]+data-act="credit-decline-confirm">거절 확정/);
+  action('credit-decline-cancel');
+  assert.equal(creditStatus(state).application.declined,false);
+  assert.equal(loadable(structuredClone(state)),true);
+  action('credit-amount-back');
+  assert.match(panel(),/data-loan-stage="rate"/);
+  action('credit-select','0');
+  action('credit-accept');
+  assert.equal(creditStatus(state).loan,null);
+  action('credit-review');
+  assert.match(panel(),/data-loan-stage="review".*1원.*하루 예상 이자/);
+  assert.match(panel(),/<dl class="loan-terms loan-review-card">/);
+  action('credit-accept');
+  assert.equal(creditStatus(state).loan.principal,1);
+  const contract=bankLoanContract(state);
+  assert.equal(contract.lender,quote.offers[0].bank);
+  assert.match(paper(state,loanContractBody(contract)),/대출 금액<\/dt><dd>1원.*대출 실행일<\/dt><dd>Day 1.*만기<\/dt><dd>Day 7 마감.*입금<br\/?>완료.*>확인<\/button>/);
+  assert.equal(loadable(structuredClone(state)),true);
+  assert.match(finance(state,'bank-repay'),/class="loan-repay-form".*갚을 금액.*사용 가능한 돈.*loan-repay-max/);
+  creditInput(field('credit-repay-amount','1'),state);
+  action('credit-repay');
+  assert.equal(creditStatus(state).loan,null);
+  assert.match(receipt,/상환 금액<\/dt><dd>1원.*남은 대출금<\/dt><dd>0원.*완납<br\/?>완료/);
+});
+
+test('bank offers accept any whole amount through the calculated cap',()=>{
+  const state=initial(),cap=creditStatus(state).max;
+  for(const invalid of [-1,0,.5,cap+1])assert.notEqual(drawCredit(state,invalid),'');
+  assert.equal(creditStatus(state).application,null);
+  assert.equal(drawCredit(initial(),105_003,()=>.5),'');
+  assert.equal(drawCredit(state,cap,()=>.5),'');
+  assert.equal(creditStatus(state).application.amount,cap);
+});
+
+test('private desk shows the amount before the tray and keeps a quote through back and review',()=>{
+  const state={...initial(),resetId:'desk-flow'};
+  const panel=()=>finance(state,'desk-loan');
+  const first=panel(),input=field('loan-desk-amount','');
+  assert.match(first,/data-loan-stage="amount"/);
+  assert.match(first,/빌릴 금액<\/label>.*?class="loan-limit".*?심사 기준과 한도.*?주사위 두 개의 합으로 연 금리를 정해\. 최대 40%야\./);
+  assert.ok(first.includes('최대 '+deskLoanMaximum.toLocaleString('ko-KR')+'원'));
+  assert.doesNotMatch(first,/loan-request-total|loan-desk-dice-tray|최소|단위|>500만<\/button>/);
+  for(const [label,value] of [['25%',deskLoanMaximum/4],['50%',deskLoanMaximum/2],['최대',deskLoanMaximum]]){
+    assert.ok(first.includes('data-act="loan-desk-preset" data-value="'+value+'">'+label+'</button>'));
+    loanDeskPreset({dataset:{value:String(value)}},{querySelector:()=>input},state);
+    assert.equal(deskLoanDraftAmount(),value);
+  }
+  loanDeskInput(field('loan-desk-amount','1'),state);
+  assert.equal(loanDeskNext(state),true);
+  assert.match(panel(),/data-loan-stage="rate".*loan-desk-dice-tray.*data-loan-dice-result="" role="status">주사위 두 개의 합으로 연 금리를 정해\.<\/p>/);
+  assert.match(panel(),/data-act="loan-desk-roll">주사위 굴리기<\/button>/);
+  assert.doesNotMatch(panel(),/loan-desk-reroll-ad|loan-desk-review/);
+  assert.equal(loanDeskStage('loan-desk-review',state),false);
+  assert.equal(rollDeskRate(state,()=>.999),'');
+  setLoanDeskToss(null,state,100);
+  const rolling=panel();
+  assert.match(rolling,/data-act="loan-desk-review" disabled="">굴리는 중…<\/button>/);
+  assert.doesNotMatch(rolling,/data-act="loan-desk-reroll-ad"/);
+  setLoanDeskToss(null,state,null);
+  const rolled=panel();
+  assert.match(rolled,/20 \+ 20 = 연 40%/);
+  assert.match(rolled,/<\/loan-dice-tray><p[^>]+data-loan-dice-result[^>]*>[^<]+<\/p><button[^>]+data-act="loan-desk-reroll-ad">.*?5초 광고 보고 다시 굴리기<\/button><div class="loan-flow-actions">/);
+  assert.match(rolled,/class="loan-flow-actions"><button[^>]+data-act="loan-desk-amount-back">이전<\/button><button[^>]+data-act="loan-desk-review">다음<\/button><\/div>/);
+  assert.doesNotMatch(rolled,/data-act="loan-desk-roll"|이 금리로 진행/);
+  assert.equal(loanDeskStage('loan-desk-amount-back',state),true);
+  assert.match(panel(),/data-loan-stage="amount"/);
+  assert.equal(loanDeskNext(state),true);
+  assert.match(panel(),/20 \+ 20 = 연 40%/);
+  assert.equal(loanDeskStage('loan-desk-review',state),true);
+  assert.match(panel(),/data-loan-stage="review".*연 40%.*하루 예상 이자/);
+  assert.match(panel(),/상환 시 선이자<\/dt><dd>1원/);
+  assert.equal(takeDeskLoan(state,1),'');
+  const contract=deskLoanContract(state),contractPaper=paper(state,loanContractBody(contract)),repayment=panel();
+  assert.equal(contract.lender,'무 대부');
+  assert.match(contractPaper,/고정 연 40%.*만기<\/dt><dd>없음.*>확인<\/button>/);
+  assert.match(contractPaper,/상환 시 선이자<\/dt><dd>1원/);
+  assert.doesNotMatch(contractPaper,/대출 갚기|loan-desk-form|주사위 결과/);
+  assert.match(repayment,/data-mode="repay".*갚을 돈 합계.*연 40%/);
+  assert.match(repayment,/갚을 금액<\/label><small[^>]*>사용 가능한 돈 <strong data-loan-value="available">5,000,001원/);
+  assert.match(repayment,/남은 선이자<\/dt><dd data-loan-value="upfrontInterest">1원.*data-value="2" data-loan-max/);
+  assert.doesNotMatch(repayment,/주사위 결과|갚고 나서 남은 빚|차감돼|대출 만기는|최근 대출 거래/);
+  assert.equal(state.loanDesk.loan.principal,1);
+  assert.equal(loadable(structuredClone(state)),true);
+  assert.equal(repayDeskLoan(state,1),'');
+  assert.equal(state.loanDesk.loan.principal,1);
+  assert.match(paper(state,loanRepaymentBody(state,state.loanDesk.ledger.at(-1),1)),/납부 선이자<\/dt><dd>1원.*남은 대출금<\/dt><dd>1원/);
+  assert.equal(repayDeskLoan(state,1),'');
+  assert.equal(state.loanDesk.loan,null);
+});

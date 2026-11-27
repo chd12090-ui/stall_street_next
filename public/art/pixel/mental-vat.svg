@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="84" height="96" viewBox="0 0 84 96" shape-rendering="crispEdges">
+  <!-- The state-dependent specimen is rendered separately in the liquid chamber. -->
+  <g id="circulation">
+    <path fill="#162e2b" d="M5 9h21v7H9v52h3v4h6v6h-8v-3H6v-5H3V12h2zM66 24h10v3h4v36h-3v3h-9v-7h5V32h-7z"/>
+    <path fill="#638b76" d="M6 10h19v4H8v55h3v4h5v3h-5v-2H7v-4H5V12h1zM67 25h8v3h3v34h-3v2h-7v-3h6V30h-7z"/>
+    <path fill="#99b196" d="M7 10h5v1H7zm-2 4h1v17H5zM68 25h6v1h-6zM76 30h1v27h-1z"/>
+    <path fill="#395a4c" d="M4 48h5v3H4zM14 9h3v6h-3zM72 60h2v5h-2z"/>
+  </g>
+  <g id="glass">
+    <path fill="#183831" d="M21 16h42v3h4v4h3v45h-2v5h-4v3H20v-3h-4v-5h-2V24h3v-5h4z"/>
+    <path fill="#86af9a" d="M22 18h40v2h4v5h2v42h-2v5h-4v2H22v-2h-4v-5h-2V25h2v-5h4z"/>
+    <path fill="#517b71" d="M23 19h38v3h4v5h1v39h-2v5H21v-4h-3V26h2v-4h3z"/>
+    <path fill="#335d57" d="M23 20h38v3h3v7H20v-6h3z"/>
+    <path fill="#3d796b" d="M19 32h9v-1h14v1h14v-1h9v36h-2v4H22v-3h-3z"/>
+    <path fill="#4c8b79" d="M21 33h7v-1h14v1h13v-1h9v26h-2v6H22v-4h-1z"/>
+    <path fill="#6fa48a" d="M19 31h9v-1h14v1h14v-1h9v2h-9v1H42v-1H28v1h-9z"/>
+    <path fill="#2e695c" d="M20 58h2v8h4v2h32v-2h5v-7h2v9h-2v3H22v-3h-2z"/>
+    <!-- Nickel sampling probe and diffuser, set behind the free-floating brain. -->
+    <path fill="#283f38" d="M36 19h5v6h-1v5h-3v-6h-1zM50 19h4v7h-2v3h-1v-4h-1z"/>
+    <path fill="#a1bfa3" d="M37 19h2v5h-2zM38 24h1v4h-1zM51 19h1v6h-1z"/>
+    <path fill="#295b50" d="M32 71v-4h3v-2h14v2h3v4z"/>
+    <path fill="#6f9d7f" d="M35 66h14v2H35z"/>
+    <path fill="#b9d4ac" d="M38 66h2v1h-2zm6 0h2v1h-2z"/>
+    <!-- Short, broken reflections and a calibration scale keep the glass translucent. -->
+    <path fill="#c2d7b5" d="M20 24h2v5h-2zm-2 8h2v13h-2zm1 15h1v6h-1z"/>
+    <path fill="#a4c8ac" d="M64 36h1v12h-1zm-1 23h1v7h-1zM22 70h4v1h-4z"/>
+    <path fill="#8eb99a" d="M60 37h3v1h-3zm1 5h2v1h-2zm-1 5h3v1h-3zm1 5h2v1h-2zm-1 5h3v1h-3z"/>
+    <g fill="#a4ccb0">
+      <path d="M26 54h2v1h1v2h-1v1h-2v-1h-1v-2h1zm0 1v2h2v-2z" fill-rule="evenodd"/>
+      <path d="M30 61h1v2h-2v-1h1zM55 58h2v2h-2zm2-23h1v2h-2v-1h1z"/>
+    </g>
+  </g>
+  <g id="lid">
+    <path fill="#193a32" d="M31 3h19v2h4v5h8v2h5v3h3v6h-3v3H17v-3h-3v-6h3v-3h5v-2h9z"/>
+    <path fill="#739276" d="M33 4h17v2h3v4H32V6h1z"/>
+    <path fill="#b2c49a" d="M33 4h16v2H33z"/>
+    <path fill="#3d604c" d="M34 8h18v2H34z"/>
+    <path fill="#719377" d="M23 10h38v2h6v3H17v-3h6z"/>
+    <path fill="#abbf93" d="M24 10h34v2H24zM18 13h18v2H18z"/>
+    <path fill="#476b56" d="M16 15h52v6h-3v2H19v-2h-3z"/>
+    <path fill="#99b08d" d="M17 15h3v5h-3zm6 0h3v5h-3zm6 0h2v5h-2z"/>
+    <path fill="#304e40" d="M53 15h3v6h-3zm6 0h3v6h-3zm6 0h3v5h-3z"/>
+    <path fill="#254b40" d="M19 21h46v2H19z"/>
+    <path fill="#738d76" d="M26 21h28v1H26z"/>
+  </g>
+  <g id="base">
+    <path fill="#142e28" d="M17 71h50v3h4v4h3v8h-3v5H13v-5h-3v-8h3v-4h4z"/>
+    <path fill="#6f9172" d="M18 72h48v3h4v3H14v-3h4z"/>
+    <path fill="#a6bc93" d="M22 72h39v2H22zM15 76h20v2H15z"/>
+    <path fill="#4a705b" d="M12 78h60v7H12z"/>
+    <path fill="#355747" d="M14 85h56v4H14z"/>
+    <path fill="#88a180" d="M15 78h4v5h-4zm6 0h2v5h-2z"/>
+    <path fill="#314e40" d="M51 79h4v3h-4zm6 0h4v3h-4zm6 0h4v3h-4z"/>
+    <path fill="#233f36" d="M29 79h13v4H29z"/>
+    <path fill="#e49aa5" d="M31 80h7v2h-7z"/>
+    <path fill="#f9c4bc" d="M31 80h2v1h-2z"/>
+    <path fill="#263e33" d="M16 89h8v3h-8zm44 0h8v3h-8z"/>
+  </g>
+</svg>

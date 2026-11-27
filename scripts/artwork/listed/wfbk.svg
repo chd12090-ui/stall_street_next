@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 64 64">
+  <title>Fieldline Bank</title>
+  <rect width="64" height="64" fill="#6B233C"/>
+  <g fill="#F8EAD6">
+    <path d="M9 37v-4.6C9 19.1 18.7 10.2 32.2 10.2c7.2 0 13.4 2.5 17.5 6.8C33.2 18.4 19.2 26.1 9 37Z"/>
+    <path d="M9 43.1c10.2-11.9 25.5-20.1 43.6-22.4l2.1 4.9C38.2 30 25.3 39.3 16.9 51.5H9Z"/>
+    <path d="M22.1 51.5c8.6-11.2 19.6-18.8 33.3-22.1v22.1Z"/>
+  </g>
+</svg>
